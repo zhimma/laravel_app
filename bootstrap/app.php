@@ -10,11 +10,7 @@
 | the IoC container for the system binding all of the various parts.
 |
 */
-/**
- *  实例化application类
- *
- *  传入项目目录
- */
+
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'redis'),
+    'driver' => env('SESSION_DRIVER', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,14 +26,7 @@ return [
     | Here you may specify the number of minutes that you wish the session
     | to be allowed to remain idle before it expires. If you want them
     | to immediately expire on the browser closing, set that option.
-    |会话生存期
-    |--------------------------------------------------------------------------
     |
-    |在这里, 您可以指定希望会话的分钟数
-    |允许在过期之前保持空闲状态。如果你想让他们
-    |若要在浏览器关闭时立即过期, 请设置该选项。
-    |
-
     */
 
     'lifetime' => 120,

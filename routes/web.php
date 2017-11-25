@@ -11,7 +11,20 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+})->name('index');
+//Route::get('/user','')->name('user');
+//使用route 辅助函数为命名路由生成url
+Route::get('/redirect',function(){
+    return redirect()->route('index');
 });
-Route::resource('/admin/index', "Admin\IndexController");
+Route::get('/model/{id}',function(\App\User $user){
+    dd($user::where('id',1)->first());
+});*/
+
+Route::get('/routes',function(){
+    $route = Route::current();
+    $route = Route::currentRouteAction();
+    dd($route);
+});
