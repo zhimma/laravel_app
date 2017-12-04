@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Rice;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Schema::defaultStringLength(191);
+//        \Schema::defaultStringLength(191);
     }
 
     /**
@@ -23,6 +24,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 }
