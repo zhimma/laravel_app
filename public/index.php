@@ -36,7 +36,6 @@ require __DIR__.'/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
-
 /*
 |--------------------------------------------------------------------------
 | Run The Application
@@ -49,8 +48,11 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 |
 */
 
+//我们通过HTTP方式访问时，
+//$kernel 实例是通过App\Http\Kernel 类实现的，
+//这个类继承了Illuminate\Foundation\Http\Kernel。
+// request 请求将交给 kernel 实例的handle()方法处理
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
