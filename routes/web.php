@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('tasks',function(){
-    $tasks = DB::table('tasks')->latest()->get();
-    return view('task.index',compact('tasks'));
-});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
