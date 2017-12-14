@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Repositories\Eloquent\AdminRepository as Admin;
 class UserController extends Controller
 {
+    private $admin;
+
+    public function __construct(Admin $admin)
+    {
+        $this->admin = $admin;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        dd($this->admin->all());
     }
 
     /**

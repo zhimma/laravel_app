@@ -18,5 +18,8 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
     $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
     $this->post('password/reset', 'ResetPasswordController@reset');
-    Route::resource('index','IndexController');
+    Route::middleware(['auth.admin:admin'])->group(function(){
+        Route::resource('index','IndexController');
+        Route::resource('user','UserController');
+    });
 });
