@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/index/index';
+    protected $redirectTo = '/admin/index';
 
     /**
      * Create a new controller instance.
@@ -35,8 +36,14 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
     }
+
+    public function guard()
+    {
+        return Auth::guard('admin');
+    }
+
     public function username()
     {
         return 'name';
@@ -70,7 +77,6 @@ class LoginController extends Controller
 
             return $this->sendLockoutResponse($request);
         }
-
         if ($this->attemptLogin($request)) {
             return $this->sendLoginResponse($request);
         }
