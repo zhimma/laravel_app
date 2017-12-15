@@ -45,7 +45,6 @@ abstract class Repository implements RepositoryInterface
     public function makeModel()
     {
         $model = $this->app->make($this->model());
-        dd($this->app);
         if(!$model instanceof Model)
         {
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
