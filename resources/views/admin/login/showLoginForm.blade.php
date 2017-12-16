@@ -22,22 +22,39 @@
 </head>
 
 <body class="login">
-<div>
     <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
 
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
+
                 <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
                     {{ csrf_field() }}
                     <h1>后台登录</h1>
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
-                        <input type="text" name="name" class="form-control" placeholder="Username" required="" />
+                        <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'parsley-error' : '' }}"  placeholder="Username" required="" />
                     </div>
                     <div>
-                        <input type="password" name="password" class="form-control" placeholder="Password" required="" />
+                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'parsley-error' : '' }}" placeholder="Password" required="" />
                     </div>
+                    <div class="checkbox">
+                        <label class="pull-left">
+                            <input type="checkbox" name="remember" value=""> 记住我
+                        </label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <br>
                     <div>
                         <button type="submit" class="btn btn-default submit">登录</button>
                         <a class="reset_pass" href="#">忘记密码</a>

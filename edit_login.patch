@@ -1,0 +1,183 @@
+Index: resources/lang/en/auth.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/lang/en/auth.php	(revision b6e1f2df9ea1328b4fe382f824f8048d7a5b17b5)
++++ resources/lang/en/auth.php	(date 1513439796000)
+@@ -13,7 +13,7 @@
+     |
+     */
+ 
+-    'failed' => 'These credentials do not match our records.',
++    'failed' => '登陆失败，用户名和密码匹配',
+     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+ 
+ ];
+Index: resources/views/admin/login/showLoginForm.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/admin/login/showLoginForm.blade.php	(revision b6e1f2df9ea1328b4fe382f824f8048d7a5b17b5)
++++ resources/views/admin/login/showLoginForm.blade.php	(date 1513439824000)
+@@ -22,22 +22,39 @@
+ </head>
+ 
+ <body class="login">
+-<div>
+     <a class="hiddenanchor" id="signup"></a>
+     <a class="hiddenanchor" id="signin"></a>
+ 
+     <div class="login_wrapper">
+         <div class="animate form login_form">
+             <section class="login_content">
++
+                 <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
+                     {{ csrf_field() }}
+                     <h1>后台登录</h1>
++                    @if (count($errors) > 0)
++                        <div class="alert alert-danger">
++                            <ul>
++                                @foreach ($errors->all() as $error)
++                                    <li>{{ $error }}</li>
++                                @endforeach
++                            </ul>
++                        </div>
++                    @endif
+                     <div>
+-                        <input type="text" name="name" class="form-control" placeholder="Username" required="" />
++                        <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'parsley-error' : '' }}"  placeholder="Username" required="" />
+                     </div>
+                     <div>
+-                        <input type="password" name="password" class="form-control" placeholder="Password" required="" />
++                        <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'parsley-error' : '' }}" placeholder="Password" required="" />
+                     </div>
++                    <div class="checkbox">
++                        <label class="pull-left">
++                            <input type="checkbox" name="remember" value=""> 记住我
++                        </label>
++                    </div>
++                    <div class="clearfix"></div>
++                    <br>
++                    <br>
+                     <div>
+                         <button type="submit" class="btn btn-default submit">登录</button>
+                         <a class="reset_pass" href="#">忘记密码</a>
+Index: resources/views/welcome.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/welcome.blade.php	(date 1513423533000)
++++ resources/views/welcome.blade.php	(date 1513423533000)
+@@ -0,0 +1,91 @@
++<!DOCTYPE html>
++<html lang="en">
++    <head>
++        <meta charset="utf-8">
++        <meta http-equiv="X-UA-Compatible" content="IE=edge">
++        <meta name="viewport" content="width=device-width, initial-scale=1">
++
++        <title>Laravel</title>
++
++        <!-- Fonts -->
++        <link href="https://fonts.lug.ustc.edu.cn/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
++
++        <!-- Styles -->
++        <style>
++            html, body {
++                background-color: #fff;
++                color: #636b6f;
++                font-family: 'Raleway', sans-serif;
++                font-weight: 100;
++                height: 100vh;
++                margin: 0;
++            }
++
++            .full-height {
++                height: 100vh;
++            }
++
++            .flex-center {
++                align-items: center;
++                display: flex;
++                justify-content: center;
++            }
++
++            .position-ref {
++                position: relative;
++            }
++
++            .top-right {
++                position: absolute;
++                right: 10px;
++                top: 18px;
++            }
++
++            .content {
++                text-align: center;
++            }
++
++            .title {
++                font-size: 84px;
++            }
++
++            .links > a {
++                color: #636b6f;
++                padding: 0 25px;
++                font-size: 12px;
++                font-weight: 600;
++                letter-spacing: .1rem;
++                text-decoration: none;
++                text-transform: uppercase;
++            }
++
++            .m-b-md {
++                margin-bottom: 30px;
++            }
++        </style>
++    </head>
++    <body>
++        <div class="flex-center position-ref full-height">
++            @if (Route::has('login'))
++                <div class="top-right links">
++                    <a href="{{ url('login') }}">Login</a>
++                    <a href="{{ url('register') }}">Register</a>
++                </div>
++            @endif
++
++            <div class="content">
++                <div class="title m-b-md links">
++                    <a href="/admin/index/index"><h1>go to admin</h1></a>
++                </div>
++
++                <div class="links">
++                    <a href="https://laravel.com/docs">Documentation</a>
++                    <a href="https://laracasts.com">Laracasts</a>
++                    <a href="https://laravel-news.com">News</a>
++                    <a href="https://forge.laravel.com">Forge</a>
++                    <a href="https://github.com/laravel/laravel">GitHub</a>
++                </div>
++            </div>
++        </div>
++    </body>
++</html>
+Index: routes/web.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- routes/web.php	(revision b6e1f2df9ea1328b4fe382f824f8048d7a5b17b5)
++++ routes/web.php	(date 1513423435000)
+@@ -11,7 +11,6 @@
+ |
+ */
+ 
+-
+-Auth::routes();
+-
+-Route::get('/home', 'HomeController@index')->name('home');
++Route::get('/', function () {
++    return view('welcome');
++});
