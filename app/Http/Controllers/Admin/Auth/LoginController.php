@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -56,7 +56,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        return view('admin.login.showLoginForm');
+        return view('admin.auth.login.showLoginForm');
     }
 
     /**
@@ -88,4 +88,23 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'captcha'  => 'required|string|captcha'
+        ],[
+            /*"{$this->username()}.required" => trans('validation.required'),
+            "{$this->username()}.string" => trans('validation.string'),
+            "password.required" => trans('validation.attributes.password'),
+            "password.string" => trans('validation.string'),*/
+            'captcha.required' => trans('validation.required'),
+            'captcha.string' => trans('validation.string'),
+            'captcha.captcha' => trans('validation.captcha')
+        ]);
+    }
+
+
 }
