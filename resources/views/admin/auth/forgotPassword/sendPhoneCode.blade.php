@@ -1,11 +1,11 @@
 @extends('admin.auth.layout.layout')
 @section('content')
-    <div class="animate form">
+    <div id="register" class="animate form">
         <section class="login_content">
-            <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
+            <form action="/admin/reset" method="POST">
                 {{ csrf_field() }}
-                <h1>后台登录</h1>
-                @if (count($errors) > 0)
+                <h1>重置密码</h1>
+                @if(count($errors) > 0)
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -15,10 +15,7 @@
                     </div>
                 @endif
                 <div>
-                    <input type="text" name="name"  value="{{ old('name') }}" class="form-control {{ $errors->has('name') ? 'parsley-error' : '' }}"  placeholder="请输入用户名称" required="" />
-                </div>
-                <div>
-                    <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'parsley-error' : '' }}" placeholder="请输入密码" required="" />
+                    <input type="text" name="phone" class="form-control" placeholder="手机号" required="" />
                 </div>
                 <div class="row">
                     <div class="col-md-8">
@@ -28,24 +25,19 @@
                         <img src="{{ captcha_src() }}" sizes="cursor:pointer" onclick="this.src='{{ captcha_src() }}' + Math.random()">
                     </div>
                 </div>
-                <div class="checkbox">
-                    <label class="pull-left">
-                        <input type="checkbox" name="remember"> 记住我
-                    </label>
-                </div>
-                <div class="clearfix"></div>
-                <br>
-                <br>
+
                 <div>
-                    <button type="submit" class="btn btn-default submit">登录</button>
-                    <a class="reset_pass" href="/admin/password/reset">忘记密码</a>
+                    <button class="btn btn-default submit">确定重置</button>
                 </div>
 
                 <div class="clearfix"></div>
 
                 <div class="separator">
-                    <p class="change_link">新用户?
-                        <a href="/admin/register" class="to_register"> 点击注册 </a>
+                    <p class="change_link">
+                        已有账号 ?
+                        <a href="/admin/login" class="to_register"> 登录 </a>
+                        没有账号 ?
+                        <a href="/admin/register" class="to_register"> 注册 </a>
                     </p>
                 </div>
             </form>
