@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
+use App\Repositories\Eloquent\AdminBaseRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
+
+    protected $admin;
+
+    public function __construct(AdminBaseRepository $admin)
+    {
+        $this->admin = $admin;
+    }
 
     /**
      * Display a listing of the resource.
@@ -17,10 +25,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $user = Auth::guard('admin')->user();
-        $res = $user->can('admin/user/edit');
-        dd($res);
-
+        dd($this->admin->all());
         return view('admin.index.index');
     }
 

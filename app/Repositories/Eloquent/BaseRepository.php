@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Repositories\Eloquent
  */
-abstract class Repository implements RepositoryInterface
+abstract class BaseRepository implements RepositoryInterface
 {
     private $app;
     private $model;
@@ -37,11 +37,6 @@ abstract class Repository implements RepositoryInterface
      */
     public abstract function model();
 
-    public function all($columns = ['*'])
-    {
-        return $this->model->all($columns);
-    }
-
     public function makeModel()
     {
         $model = $this->app->make($this->model());
@@ -52,4 +47,31 @@ abstract class Repository implements RepositoryInterface
 
         return $this->model = $model;
     }
+
+    /**
+     * Retrieve all data of repository
+     *
+     * @param array $columns
+     *
+     * @return mixed
+     */
+    public function all($columns = ['*'])
+    {
+
+        $results = $this->model->all($columns);
+        return $this->parserResult($results);
+    }
+
+    /**
+     * Wrapper result data
+     *
+     * @param mixed $result
+     *
+     * @return mixed
+     */
+    public function parserResult($result)
+    {
+        return $result;
+    }
+
 }
