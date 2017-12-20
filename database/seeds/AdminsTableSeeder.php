@@ -30,5 +30,11 @@ class AdminsTableSeeder extends Seeder
                 $u->roles()->attach($userRole->id);
             });
 
+        $createUser = \App\Models\Permission::where('display_name','添加用户')->first();
+        $userRole->attachPermission($createUser);
+
+        $allPermission = \App\Models\Permission::get();
+        $ids = array_column($allPermission->toArray(),'id');
+        $adminRole->perms()->sync($ids);
     }
 }

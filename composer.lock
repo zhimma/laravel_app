@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ecf71f54b73d78718c700f5c36fcc6e",
+    "content-hash": "bc2763ccedccbf6231f7e7230770b1e3",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
