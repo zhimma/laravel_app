@@ -17,7 +17,7 @@ Route::prefix('admin')->group(function(){
 
         // Password Reset Routes...
         $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-        $this->post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        $this->post('password/email', 'Forgot PasswordController@sendResetLinkEmail')->name('password.email');
         $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         $this->post('password/reset', 'ResetPasswordController@reset');
     });
