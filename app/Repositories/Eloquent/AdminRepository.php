@@ -11,7 +11,7 @@ namespace App\Repositories\Eloquent;
  *
  * @package App\Repositories\Eloquent
  */
-class AdminBaseRepository extends BaseRepository
+class AdminRepository extends BaseRepository
 {
     public function model()
     {

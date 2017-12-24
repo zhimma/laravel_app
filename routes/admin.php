@@ -16,10 +16,10 @@ Route::prefix('admin')->group(function(){
         $this->post('register', 'RegisterController@register');
 
         // Password Reset Routes...
-        $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+       /* $this->get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
         $this->post('password/email', 'Forgot PasswordController@sendResetLinkEmail')->name('password.email');
         $this->get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-        $this->post('password/reset', 'ResetPasswordController@reset');
+        $this->post('password/reset', 'ResetPasswordController@reset');*/
     });
 
     Route::namespace('Admin')->middleware(['auth.admin:admin'])->group(function(){

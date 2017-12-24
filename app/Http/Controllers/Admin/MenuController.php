@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\MenuRequest;
 use App\Models\Menu;
+use App\Repositories\Eloquent\MenuRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MenuController extends Controller
 {
+    private $menu;
+
+    public function __construct(MenuRepository $menu)
+    {
+        $this->menu = $menu;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +43,15 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        //
+        $res = $this->menu->create($request->all());
+        if($res){
+            flash('菜单添加成功' , 'success');
+        } else {
+          flash('菜单添加失败' , 'error');
+        }
+        return redirect()->back();
     }
 
     /**

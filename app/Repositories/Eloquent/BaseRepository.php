@@ -30,24 +30,23 @@ abstract class BaseRepository implements RepositoryInterface
     /**
      * 定义一个抽象方法model(),强制继承类中实现该方法
      * 用来获取当前操作类对应的模型
+     *
      * @return mixed
      *
      * @author 马雄飞 <xiongfei.ma@pactera.com>
-     * @date 2017年12月14日14:25:41
+     * @date   2017年12月14日14:25:41
      */
     public abstract function model();
 
     public function makeModel()
     {
         $model = $this->app->make($this->model());
-        if(!$model instanceof Model)
-        {
+        if (!$model instanceof Model) {
             throw new RepositoryException("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
 
         return $this->model = $model;
     }
-
     /**
      * Retrieve all data of repository
      *
@@ -59,7 +58,39 @@ abstract class BaseRepository implements RepositoryInterface
     {
 
         $results = $this->model->all($columns);
+
         return $this->parserResult($results);
+    }
+
+    /**
+     * 保存数据
+     * @param array $attributes
+     *
+     * @return mixed
+     * @throws RepositoryException
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2017年12月24日23:47:14
+     */
+    public function create(array $attributes)
+    {
+        $model = $this->model->newInstance($attributes);
+        $model->save();
+        $this->resetModel();
+
+        return $this->parserResult($model);
+    }
+
+    /**
+     * 重置model
+     * @throws RepositoryException
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2017年12月24日23:46:30
+     */
+    public function resetModel()
+    {
+        $this->makeModel();
     }
 
     /**

@@ -1,6 +1,7 @@
 @extends('admin.layout.layout')
 @section('css')
     <link href="{{ asset('admin/vendors/nestable/jquery.nestable.css')  }}" rel="stylesheet">
+    <link href="{{ asset('admin/vendors/select2/dist/css/select2.min.css')  }}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="">
@@ -9,7 +10,9 @@
                 <h3>菜单管理</h3>
             </div>
         </div>
-
+        <div>
+            @include('flash::message')
+        </div>
         <div class="clearfix"></div>
 
         <div class="row">
@@ -88,7 +91,7 @@
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Form Basic Elements <small>different form elements</small></h2>
+                        <h2>添加菜单 <small>different form elements</small></h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -108,20 +111,48 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form class="form-horizontal form-label-left" action="{{ url('admin/menu') }}" method="POST">
+                            {{ csrf_field() }}
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Default Input</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" placeholder="Default Input">
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="菜单名称">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Custom</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单链接</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <select class="select2_single form-control" tabindex="-1">
+                                    <input type="text" name="url" value="{{ old('url') }}" class="form-control" placeholder="菜单链接">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <select class="select2_single form-control"  name="parent_id" tabindex="-1">
                                         <option></option>
-                                        <option value="AK">Alaska</option>
+                                        <option value="1">Alaska</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单图标</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" name="icon" value="{{ old('icon') }}" class="form-control" placeholder="菜单图标">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单排序</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="number" name="sort" value="{{ old('sort') }}" class="form-control" placeholder="菜单排序">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>

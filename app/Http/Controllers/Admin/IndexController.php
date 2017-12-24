@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
-use App\Repositories\Eloquent\AdminBaseRepository;
+use App\Repositories\Eloquent\AdminRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ class IndexController extends Controller
 
     protected $admin;
 
-    public function __construct(AdminBaseRepository $admin)
+    public function __construct(AdminRepository $admin)
     {
         $this->admin = $admin;
     }

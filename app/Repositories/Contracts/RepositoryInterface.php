@@ -126,7 +126,7 @@ interface RepositoryInterface
      *
      * @return mixed
      */
-//    public function create(array $attributes);
+    public function create(array $attributes);
     /**
      * Update a entity in repository by id
      *

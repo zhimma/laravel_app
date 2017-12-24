@@ -13,7 +13,8 @@
             fastclick:'vendors/fastclick/lib/fastclick.js',
             nprogress:'vendors/nprogress/nprogress.js',
             custom:'build/js/custom.min.js',
-            nestable:'vendors/nestable/jquery.nestable.js'
+            nestable:'vendors/nestable/jquery.nestable.js',
+            select2:'vendors/select2/dist/js/select2.js'
         },
         preload:[
             'jQuery'
