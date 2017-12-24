@@ -12,7 +12,7 @@
             bootstrap_js:'vendors/bootstrap/dist/js/bootstrap.min.js',
             fastclick:'vendors/fastclick/lib/fastclick.js',
             nprogress:'vendors/nprogress/nprogress.js',
-            custom:'build/js/custom.js',
+            custom:'build/js/custom.min.js',
             nestable:'vendors/nestable/jquery.nestable.js'
         },
         preload:[

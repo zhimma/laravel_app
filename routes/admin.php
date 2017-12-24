@@ -25,5 +25,6 @@ Route::prefix('admin')->group(function(){
     Route::namespace('Admin')->middleware(['auth.admin:admin'])->group(function(){
         Route::resource('index','IndexController');
         Route::resource('user','UserController');
+        Route::resource('menu','MenuController');
     });
 });
