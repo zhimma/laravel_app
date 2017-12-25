@@ -11,7 +11,7 @@ interface RepositoryInterface
     /**
      * Retrieve data array for populate field select
      *
-     * @param string $column
+     * @param string      $column
      * @param string|null $key
      *
      * @return \Illuminate\Support\Collection|array
@@ -20,7 +20,8 @@ interface RepositoryInterface
     /**
      * Retrieve data array for populate field select
      * Compatible with Laravel 5.3
-     * @param string $column
+     *
+     * @param string      $column
      * @param string|null $key
      *
      * @return \Illuminate\Support\Collection|array
@@ -29,10 +30,11 @@ interface RepositoryInterface
     /**
      * Sync relations
      *
-     * @param $id
-     * @param $relation
-     * @param $attributes
+     * @param      $id
+     * @param      $relation
+     * @param      $attributes
      * @param bool $detaching
+     *
      * @return mixed
      */
 //    public function sync($id, $relation, $attributes, $detaching = true);
@@ -42,6 +44,7 @@ interface RepositoryInterface
      * @param $id
      * @param $relation
      * @param $attributes
+     *
      * @return mixed
      */
 //    public function syncWithoutDetaching($id, $relation, $attributes);
@@ -53,10 +56,13 @@ interface RepositoryInterface
      * @return mixed
      */
     public function all($columns = ['*']);
+
+    public function getColumns($where = [], $columns = ['*']);
+
     /**
      * Retrieve all data of repository, paginated
      *
-     * @param null $limit
+     * @param null  $limit
      * @param array $columns
      *
      * @return mixed
@@ -65,7 +71,7 @@ interface RepositoryInterface
     /**
      * Retrieve all data of repository, simple paginated
      *
-     * @param null $limit
+     * @param null  $limit
      * @param array $columns
      *
      * @return mixed
@@ -176,7 +182,7 @@ interface RepositoryInterface
     /**
      * Load relation with closure
      *
-     * @param string $relation
+     * @param string  $relation
      * @param closure $closure
      *
      * @return $this
@@ -187,6 +193,7 @@ interface RepositoryInterface
      * Add subselect queries to count the relations.
      *
      * @param  mixed $relations
+     *
      * @return $this
      */
 //    public function withCount($relations);

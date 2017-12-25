@@ -24,7 +24,11 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('admin.menu.index');
+        $parentMenus = $this->menu->getColumns(['parent_id'=>0],['id','name']);
+        $allMenus = $this->menu->all(['id','parent_id','name'])->toArray();
+        $allMenus = $this->menu->sortMenu($allMenus);
+        dd($allMenus);
+        return view('admin.menu.index')->with(['parentMenus'=>$parentMenus,'allMenus' => $allMenus]);
     }
 
     /**

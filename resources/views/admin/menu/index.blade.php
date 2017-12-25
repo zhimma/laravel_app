@@ -138,8 +138,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <select class="select2_single form-control"  name="parent_id" tabindex="-1">
-                                        <option></option>
-                                        <option value="1">Alaska</option>
+                                        @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
+                                        {!! $menuPresenter->getParentMenu($parentMenus) !!}
                                     </select>
                                 </div>
                             </div>
@@ -158,8 +158,8 @@
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <button type="submit" class="btn btn-default">Cancel</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <button type="cancel" class="btn btn-default">取消</button>
+                                    <button type="submit" class="btn btn-success">保存</button>
                                 </div>
                             </div>
                         </form>
