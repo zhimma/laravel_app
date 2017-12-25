@@ -47,6 +47,7 @@ abstract class BaseRepository implements RepositoryInterface
 
         return $this->model = $model;
     }
+
     /**
      * Retrieve all data of repository
      *
@@ -64,13 +65,14 @@ abstract class BaseRepository implements RepositoryInterface
 
     /**
      * 保存数据
+     *
      * @param array $attributes
      *
      * @return mixed
      * @throws RepositoryException
      *
      * @author 马雄飞 <xiongfei.ma@pactera.com>
-     * @date 2017年12月24日23:47:14
+     * @date   2017年12月24日23:47:14
      */
     public function create(array $attributes)
     {
@@ -81,12 +83,18 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->parserResult($model);
     }
 
+    public function getColumns($where = [], $columns = ['*'])
+    {
+        return $this->parserResult($this->model->where($where)->get($columns));
+    }
+
     /**
      * 重置model
+     *
      * @throws RepositoryException
      *
      * @author 马雄飞 <xiongfei.ma@pactera.com>
-     * @date 2017年12月24日23:46:30
+     * @date   2017年12月24日23:46:30
      */
     public function resetModel()
     {
