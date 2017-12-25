@@ -6,4 +6,5 @@ define(function (require, exports, module) {
         require('nprogress');
         require('fastclick');
     });
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 })

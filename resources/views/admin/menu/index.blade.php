@@ -10,10 +10,8 @@
                 <h3>菜单管理</h3>
             </div>
         </div>
-        <div>
-            @include('flash::message')
-        </div>
         <div class="clearfix"></div>
+        @include('flash::message')
 
         <div class="row">
             <div class="col-md-6">
