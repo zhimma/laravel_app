@@ -25,9 +25,7 @@ class MenuController extends Controller
     public function index()
     {
         $parentMenus = $this->menu->getColumns(['parent_id'=>0],['id','name']);
-        $allMenus = $this->menu->all(['id','parent_id','name'])->toArray();
-        $allMenus = $this->menu->sortMenu($allMenus);
-        dd($allMenus);
+        $allMenus = $this->menu->refreshAndGetAllMenus();
         return view('admin.menu.index')->with(['parentMenus'=>$parentMenus,'allMenus' => $allMenus]);
     }
 
@@ -51,6 +49,7 @@ class MenuController extends Controller
     {
         $res = $this->menu->create($request->all());
         if($res){
+            $this->menu->refreshAndGetAllMenus(true);
             flash('菜单添加成功' , 'success');
         } else {
           flash('菜单添加失败' , 'error');

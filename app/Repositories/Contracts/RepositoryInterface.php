@@ -56,7 +56,6 @@ interface RepositoryInterface
      * @return mixed
      */
     public function all($columns = ['*']);
-
     public function getColumns($where = [], $columns = ['*']);
 
     /**

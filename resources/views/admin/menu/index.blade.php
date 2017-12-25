@@ -40,48 +40,8 @@
                     </div>
                     <div class="x_content bs-example-popovers">
                         <div class="dd" id="nestable">
-                            <ol class="dd-list">
-                                <li class="dd-item" data-id="1">
-                                    <div class="dd-handle">Item 1</div>
-                                </li>
-                                <li class="dd-item" data-id="2">
-                                    <div class="dd-handle">Item 2</div>
-                                    <ol class="dd-list">
-                                        <li class="dd-item" data-id="3">
-                                            <div class="dd-handle">Item 3</div>
-                                        </li>
-                                        <li class="dd-item" data-id="4">
-                                            <div class="dd-handle">Item 4</div>
-                                        </li>
-                                        <li class="dd-item" data-id="5">
-                                            <div class="dd-handle">Item 5</div>
-                                            <ol class="dd-list">
-                                                <li class="dd-item" data-id="6">
-                                                    <div class="dd-handle">Item 6</div>
-                                                </li>
-                                                <li class="dd-item" data-id="7">
-                                                    <div class="dd-handle">Item 7</div>
-                                                </li>
-                                                <li class="dd-item" data-id="8">
-                                                    <div class="dd-handle">Item 8</div>
-                                                </li>
-                                            </ol>
-                                        </li>
-                                        <li class="dd-item" data-id="9">
-                                            <div class="dd-handle">Item 9</div>
-                                        </li>
-                                        <li class="dd-item" data-id="10">
-                                            <div class="dd-handle">Item 10</div>
-                                        </li>
-                                    </ol>
-                                </li>
-                                <li class="dd-item" data-id="11">
-                                    <div class="dd-handle">Item 11</div>
-                                </li>
-                                <li class="dd-item" data-id="12">
-                                    <div class="dd-handle">Item 12</div>
-                                </li>
-                            </ol>
+                            @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
+                            {!! $menuPresenter->getMenuList() !!}
                         </div>
                     </div>
                 </div>
@@ -89,12 +49,15 @@
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>添加菜单 <small>different form elements</small></h2>
+                        <h2>添加菜单
+                            <small>different form elements</small>
+                        </h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#">Settings 1</a>
                                     </li>
@@ -108,7 +71,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <br />
+                        <br/>
                         @if (count($errors) > 0)
                             <div class="alert alert-danger">
                                 <ul>
@@ -123,19 +86,21 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="菜单名称">
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control"
+                                           placeholder="菜单名称">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单链接</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="url" value="{{ old('url') }}" class="form-control" placeholder="菜单链接">
+                                    <input type="text" name="url" value="{{ old('url') }}" class="form-control"
+                                           placeholder="菜单链接">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <select class="select2_single form-control"  name="parent_id" tabindex="-1">
+                                    <select class="select2_single form-control" name="parent_id" tabindex="-1">
                                         @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
                                         {!! $menuPresenter->getParentMenu($parentMenus) !!}
                                     </select>
@@ -144,13 +109,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单图标</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="icon" value="{{ old('icon') }}" class="form-control" placeholder="菜单图标">
+                                    <input type="text" name="icon" value="{{ old('icon') }}" class="form-control"
+                                           placeholder="菜单图标">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单排序</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="number" name="sort" value="{{ old('sort') }}" class="form-control" placeholder="菜单排序">
+                                    <input type="number" name="sort" value="{{ old('sort') }}" class="form-control"
+                                           placeholder="菜单排序">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
@@ -169,7 +136,7 @@
 @endsection
 @section('js')
     <script>
-        seajs.use(['module_js/menu/index'],function(menu){
+        seajs.use(['module_js/menu/index'], function (menu) {
             menu.init();
         });
     </script>
