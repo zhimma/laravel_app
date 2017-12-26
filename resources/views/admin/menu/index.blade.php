@@ -46,6 +46,7 @@
                     </div>
                 </div>
             </div>
+            @permission('admin/menu/create')
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
@@ -131,6 +132,7 @@
                     </div>
                 </div>
             </div>
+            @endpermission
         </div>
     </div>
 @endsection

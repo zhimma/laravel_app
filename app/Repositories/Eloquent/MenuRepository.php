@@ -28,7 +28,7 @@ class  MenuRepository extends BaseRepository
         if(!empty($allMenus)){
             $allMenus = list_to_tree_key($allMenus,'id','parent_id');
             foreach ($allMenus as $key => &$value){
-                if($value['_child']){
+                if(isset($value['_child']) && !empty($value['_child'])){
                     $sort = array_column($value['_child'],'sort');
                     array_multisort($sort,SORT_ASC,$value['_child']);
                 }

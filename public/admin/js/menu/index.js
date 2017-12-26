@@ -8,7 +8,13 @@ define(function (require, exports, module) {
                     placeholder : '请选择',
                     allowClear:true
                 });
-                $('#nestable').nestable();
+                $('#nestable').nestable({
+                    'maxDepth' : 2
+                });
+            });
+
+            $(".createMenu").on('click',function(){
+                alert(111);
             });
         }
     }

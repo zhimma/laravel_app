@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Repositories\Eloquent\MenuRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
