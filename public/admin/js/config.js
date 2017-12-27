@@ -12,7 +12,7 @@
             bootstrap_js:'vendors/bootstrap/dist/js/bootstrap.min.js',
             fastclick:'vendors/fastclick/lib/fastclick.js',
             nprogress:'vendors/nprogress/nprogress.js',
-            custom:'build/js/custom.min.js',
+            custom:'build/js/custom.js',
             nestable:'vendors/nestable/jquery.nestable.js',
             select2:'vendors/select2/dist/js/select2.js',
             layer:"vendors/layer/layer.js"

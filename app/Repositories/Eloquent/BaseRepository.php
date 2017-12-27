@@ -103,10 +103,9 @@ abstract class BaseRepository implements RepositoryInterface
        return $this->parserResult($this->model->where('id',$id)->first($columns));
     }
 
-    public function update(array $attributes, $id)
+    public function update(array $attributes,$id)
     {
-        dd($id);
-        // TODO: Implement update() method.
+        return $this->model->where('id',$id)->update($attributes);
     }
 
     /**

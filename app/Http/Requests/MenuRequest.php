@@ -23,21 +23,26 @@ class MenuRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|unique:menus,name',
+        $rules = [
             'parent_id' => 'required',
-            'url' => 'required'
+            'url'       => 'required'
         ];
+        if (request('id', '')) {
+            $rules['name'] = 'required|unique:menus,name,' . $this->id;
+        } else {
+            $rules['name'] = 'required|unique:menus,name';
+        }
+        return $rules;
     }
 
     public function messages()
     {
-        return [
-            'name.required' => '菜单名称不能为空',
-            'name.unique' => '菜单名称不能重复',
+        $message = [
+            'name.required'      => '菜单名称不能为空',
+            'name.unique'        => '菜单名称不能重复',
             'parent_id.required' => '父级菜单不能为空',
-            'url.required' => '菜单链接url不能为空'
-
+            'url.required'       => '菜单链接url不能为空'
         ];
+        return $message;
     }
 }

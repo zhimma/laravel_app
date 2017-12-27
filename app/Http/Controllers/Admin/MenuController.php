@@ -25,9 +25,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $parentMenus = $this->menu->findWhere(['parent_id'=>0],['id','name']);
+        $parentMenus = $this->menu->findWhere(['parent_id' => 0], ['id', 'name']);
         $allMenus = $this->menu->refreshAndGetAllMenus();
-        return view('admin.menu.index')->with(['parentMenus'=>$parentMenus,'allMenus' => $allMenus]);
+
+        return view('admin.menu.index')->with(['parentMenus' => $parentMenus, 'allMenus' => $allMenus]);
     }
 
     /**
@@ -43,25 +44,28 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(MenuRequest $request)
     {
         $res = $this->menu->create($request->all());
-        if($res){
+        if ($res) {
             $this->menu->refreshAndGetAllMenus(true);
-            flash('菜单添加成功' , 'success');
+            flash('菜单添加成功', 'success');
         } else {
-          flash('菜单添加失败' , 'error');
+            flash('菜单添加失败', 'error');
         }
+
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Menu $menu
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Menu $menu)
@@ -77,16 +81,17 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      * @author 马雄飞 <mma5694@gmail.com>
-     * @date 2017年12月27日16:53:28
+     * @date   2017年12月27日16:53:28
      */
     public function edit($id)
     {
         $menu = $this->menu->find($id);
-        if(!empty($menu)){
-            $return = ['status' => 1,'data'=>$menu ,'url' => url('admin/menu/'.$id)];
-        }else{
-            $return = ['status' => 0,'data' => []];
+        if (!empty($menu)) {
+            $return = ['status' => 1, 'data' => $menu, 'url' => url('admin/menu/' . $id)];
+        } else {
+            $return = ['status' => 0, 'data' => []];
         }
+
         return response()->json($return);
     }
 
@@ -94,19 +99,38 @@ class MenuController extends Controller
      * 更新修改后的数据
      *
      * @param Request $request
+     * @param         $id
      *
-     * @author 马雄飞 <mma5694@gmail.com>
-     * @date 2017年12月27日17:18:34
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2017年12月27日22:30:37
      */
-    public function update(Request $request,$id)
+    public function update(MenuRequest $request,$id)
     {
-        dd($id);
+        $menu = $this->menu->find($id);
+        if (!empty($menu)) {
+            $res = $menu->where('id',$id)->update($request->all());
+            if ($res) {
+                $this->menu->refreshAndGetAllMenus(true);
+                flash('修改成功', 'success');
+            } else {
+                flash('修改失败', 'error');
+            }
+            return redirect()->back();
+
+        } else {
+            abort(404, '菜单数据获取失败');
+        }
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Menu  $menu
+     * @param  \App\Models\Menu $menu
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Menu $menu)
