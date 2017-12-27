@@ -14,7 +14,8 @@
             nprogress:'vendors/nprogress/nprogress.js',
             custom:'build/js/custom.min.js',
             nestable:'vendors/nestable/jquery.nestable.js',
-            select2:'vendors/select2/dist/js/select2.js'
+            select2:'vendors/select2/dist/js/select2.js',
+            layer:"vendors/layer/layer.js"
         },
         preload:[
             'jQuery'

@@ -83,9 +83,30 @@ abstract class BaseRepository implements RepositoryInterface
         return $this->parserResult($model);
     }
 
-    public function getColumns($where = [], $columns = ['*'])
+    public function findWhere(array $where = [], $columns = ['*'])
     {
         return $this->parserResult($this->model->where($where)->get($columns));
+    }
+
+    /**
+     * 根据id查询指定列
+     *
+     * @param       $id
+     * @param array $columns
+     *
+     * @return mixed
+     * @author 马雄飞 <mma5694@gmail.com>
+     * @date 2017年12月27日16:08:59
+     */
+    public function find($id, $columns = ['*'])
+    {
+       return $this->parserResult($this->model->where('id',$id)->first($columns));
+    }
+
+    public function update(array $attributes, $id)
+    {
+        dd($id);
+        // TODO: Implement update() method.
     }
 
     /**

@@ -5,6 +5,7 @@ define(function (require, exports, module) {
         require('custom');
         require('nprogress');
         require('fastclick');
+        require('layer');
     });
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 })

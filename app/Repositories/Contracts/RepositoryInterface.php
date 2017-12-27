@@ -56,7 +56,6 @@ interface RepositoryInterface
      * @return mixed
      */
     public function all($columns = ['*']);
-    public function getColumns($where = [], $columns = ['*']);
 
     /**
      * Retrieve all data of repository, paginated
@@ -84,7 +83,7 @@ interface RepositoryInterface
      *
      * @return mixed
      */
-//    public function find($id, $columns = ['*']);
+     public function find($id, $columns = ['*']);
     /**
      * Find data by field and value
      *
@@ -103,7 +102,7 @@ interface RepositoryInterface
      *
      * @return mixed
      */
-//    public function findWhere(array $where, $columns = ['*']);
+   public function findWhere(array $where, $columns = ['*']);
     /**
      * Find data by multiple values in one field
      *
@@ -140,7 +139,7 @@ interface RepositoryInterface
      *
      * @return mixed
      */
-//    public function update(array $attributes, $id);
+   public function update(array $attributes, $id);
     /**
      * Update or Create an entity in repository
      *

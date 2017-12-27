@@ -25,7 +25,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $parentMenus = $this->menu->getColumns(['parent_id'=>0],['id','name']);
+        $parentMenus = $this->menu->findWhere(['parent_id'=>0],['id','name']);
         $allMenus = $this->menu->refreshAndGetAllMenus();
         return view('admin.menu.index')->with(['parentMenus'=>$parentMenus,'allMenus' => $allMenus]);
     }
@@ -66,30 +66,41 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+        //sd
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 获取要编辑菜单的数据
      *
-     * @param  \App\Models\Menu  $menu
-     * @return \Illuminate\Http\Response
+     * @param $id
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @author 马雄飞 <mma5694@gmail.com>
+     * @date 2017年12月27日16:53:28
      */
     public function edit($id)
     {
-
+        $menu = $this->menu->find($id);
+        if(!empty($menu)){
+            $return = ['status' => 1,'data'=>$menu ,'url' => url('admin/menu/'.$id)];
+        }else{
+            $return = ['status' => 0,'data' => []];
+        }
+        return response()->json($return);
     }
 
     /**
-     * Update the specified resource in storage.
+     * 更新修改后的数据
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Menu  $menu
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @author 马雄飞 <mma5694@gmail.com>
+     * @date 2017年12月27日17:18:34
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request,$id)
     {
-        //
+        dd($id);
     }
 
     /**

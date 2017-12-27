@@ -82,7 +82,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form-horizontal form-label-left" action="{{ url('admin/menu') }}" method="POST">
+                        <form class="form-horizontal form-label-left j_create_menu" action="{{ url('admin/menu') }}" method="POST">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称</label>
