@@ -17,7 +17,20 @@
     <link href="{{ asset('admin/vendors/nprogress/nprogress.css') }}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{ asset('admin/build/css/custom.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('seajs/seajs-2.2.3/dist/sea.js') }}"></script>
     @yield('css')
+    <script>
+        var paths = {};
+        paths.asset = '{{ asset('admin') }}';
+        paths.module_js = paths.asset+'/js';
+        paths.vendors = paths.asset+'/vendors';
+        paths.build = paths.asset+'/build';
+    </script>
+    <script src="{{ asset('admin/js/config.js') }}"></script>
+    <script>
+        seajs.use(['module_js/layout/layout'],function () {
+        })
+    </script>
 </head>
 
 <body class="nav-md">
@@ -25,9 +38,9 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
+               {{-- <div class="navbar nav_title" style="border: 0;">
                     <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
-                </div>
+                </div>--}}
 
                 <div class="clearfix"></div>
 
@@ -37,8 +50,8 @@
                         <img src="{{ asset('admin/images/img.jpg') }}" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span>欢迎你,</span>
+                        <h2>{{ auth()->user()->name }}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -89,21 +102,6 @@
         <!-- /footer content -->
     </div>
 </div>
-
-<script src="{{ asset('seajs/seajs-2.2.3/dist/sea.js') }}"></script>
-<script>
-    var paths = {};
-    paths.asset = '{{ asset('admin') }}';
-    paths.module_js = paths.asset+'/js';
-    paths.vendors = paths.asset+'/vendors';
-    paths.build = paths.asset+'/build';
-</script>
-<script src="{{ asset('admin/js/config.js') }}"></script>
-<script>
-    seajs.use(['module_js/layout/layout'],function () {
-
-    })
-</script>
 @yield('js')
 <!-- /gauge.js -->
 </body>

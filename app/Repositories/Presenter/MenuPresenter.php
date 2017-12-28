@@ -125,8 +125,28 @@ class MenuPresenter
         return $buttons;
     }
 
-    public function menuList($menus)
+    /**
+     *
+     * @param $menus
+     *
+     * @return string
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2017年12月28日17:09:37
+     */
+    public function sideBarMenuList($menus)
     {
-
+        $html = '';
+        foreach ($menus as $key => $value) {
+            $html .= '<li><a><i class="fa fa-home"></i> ' . $value['name'] . ' <span class="fa fa-chevron-down"></span></a>';
+            if (!empty($value['_child'])) {
+                $html .= '<ul class="nav child_menu">';
+                foreach ($value['_child'] as $k => $v) {
+                    $html .= '<li><a href="'.url($v['url']).'">'.$v['name'].'</a></li>';
+                }
+                $html .= '</ul></li>';
+            }
+        }
+        return $html;
     }
 }
