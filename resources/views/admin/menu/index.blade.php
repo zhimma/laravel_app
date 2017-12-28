@@ -17,25 +17,8 @@
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Pop Overs
-                            <small>Sessions</small>
+                        <h2>菜单列表
                         </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content bs-example-popovers">
@@ -50,25 +33,8 @@
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>添加菜单
-                            <small>different form elements</small>
+                        <h2>菜单编辑
                         </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -82,8 +48,15 @@
                                 </ul>
                             </div>
                         @endif
-                        <form class="form-horizontal form-label-left j_create_menu" action="{{ url('admin/menu') }}" method="POST">
+                        <form class="form-horizontal form-label-left j_create_menu" @if(old('id')) action="{{ url('admin/menu/'.old('id')) }}" @else action="{{ url('admin/menu') }}" @endif  method="POST">
                             {{ csrf_field() }}
+                            @if(old('id'))
+                                <div class="hidden_area">
+                                    <input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">
+                                    <input type="hidden" class="" name="id" value="{{ old('id') }}">
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">

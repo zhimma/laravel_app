@@ -16,7 +16,10 @@ define(function (require, exports, module) {
 
             $(".createMenu").on('click',function(){
                 var self = $(this);
-                select2.val(self.attr('data-pid')).trigger('change')
+                $('.j_create_menu')[0].reset();
+                select2.val(self.attr('data-pid')).trigger('change');
+                $(".j_create_menu").find('.hidden_area').remove();
+                $(".j_create_menu").attr('action',$(this).data('href'));
             });
 
             $(".editMenu").on('click',function(){
@@ -42,7 +45,12 @@ define(function (require, exports, module) {
                     }
                 });
             });
+            $(".destroyMenu").on('click',function(){
+                $(this).find('.j_delete_menu_item').submit();
+            })
+
         },
+        //编辑填充数据
         appendEditData:function(data,url)
         {
             var pid  = data.parent_id;
@@ -53,9 +61,12 @@ define(function (require, exports, module) {
             $(".j_create_menu").find("input[name='icon']").val(data.icon);
             $(".j_create_menu").find("input[name='sort']").val(data.sort);
             $(".j_create_menu").attr('action',url);
-            $(".j_create_menu").append('<div class="hidden_area"><input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">' +
-                '<input type="hidden" class="" name="id" value="'+data.id+'"></div>');
-        }
+            $(".j_create_menu").append(
+                '<div class="hidden_area"><input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">' +
+                '<input type="hidden" class="" name="id" value="'+data.id+'"></div>'
+            );
+        },
+
     }
 
 })

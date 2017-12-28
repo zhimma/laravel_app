@@ -14,10 +14,10 @@ class PermissionTableSeeder extends Seeder
         DB::table('permissions')->insert([
             ['name' => 'admin/user/create','display_name'=>'添加用户','description'=>'添加用户','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin/user/edit','display_name'=>'编辑用户','description'=>'编辑用户','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
-            ['name' => 'admin/user/delete','display_name'=>'删除用户','description'=>'删除用户','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
+            ['name' => 'admin/user/destroy','display_name'=>'删除用户','description'=>'删除用户','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin/menu/create','display_name'=>'添加菜单','description'=>'添加菜单','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin/menu/edit','display_name'=>'编辑菜单','description'=>'编辑菜单','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
-            ['name' => 'admin/menu/delete','display_name'=>'删除菜单','description'=>'删除菜单','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]
+            ['name' => 'admin/menu/destroy','display_name'=>'删除菜单','description'=>'删除菜单','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()]
 
         ]);
     }

@@ -96,16 +96,44 @@ abstract class BaseRepository implements RepositoryInterface
      *
      * @return mixed
      * @author 马雄飞 <mma5694@gmail.com>
-     * @date 2017年12月27日16:08:59
+     * @date   2017年12月27日16:08:59
      */
     public function find($id, $columns = ['*'])
     {
-       return $this->parserResult($this->model->where('id',$id)->first($columns));
+        return $this->parserResult($this->model->where('id', $id)->first($columns));
     }
 
-    public function update(array $attributes,$id)
+    /**
+     * 更新数据
+     *
+     * @param array $attributes
+     * @param       $id
+     *
+     * @return mixed
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2017年12月28日11:12:46
+     */
+    public function update(array $attributes, $id)
     {
-        return $this->model->where('id',$id)->update($attributes);
+        $data = $this->model->fill($attributes)->toArray();
+
+        return $this->model->where('id', $id)->update($data);
+    }
+
+    /**
+     * 删除
+     *
+     * @param $id
+     *
+     * @return int|void
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2017年12月28日15:02:49
+     */
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
     }
 
     /**

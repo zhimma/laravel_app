@@ -158,7 +158,7 @@ interface RepositoryInterface
      *
      * @return int
      */
-//    public function delete($id);
+    public function delete($id);
     /**
      * Order collection by a given column
      *

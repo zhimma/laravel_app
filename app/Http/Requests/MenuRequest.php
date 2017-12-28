@@ -32,6 +32,7 @@ class MenuRequest extends FormRequest
         } else {
             $rules['name'] = 'required|unique:menus,name';
         }
+
         return $rules;
     }
 
@@ -43,6 +44,7 @@ class MenuRequest extends FormRequest
             'parent_id.required' => '父级菜单不能为空',
             'url.required'       => '菜单链接url不能为空'
         ];
+
         return $message;
     }
 }

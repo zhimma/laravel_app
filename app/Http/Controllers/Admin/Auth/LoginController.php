@@ -22,12 +22,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/index';
+
 
     /**
      * Create a new controller instance.
@@ -37,6 +32,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:admin')->except('logout');
+    }
+
+    protected function redirectTo()
+    {
+        return url('admin/menu');
     }
 
     public function guard()
@@ -104,6 +104,15 @@ class LoginController extends Controller
             'captcha.string' => trans('validation.string'),
             'captcha.captcha' => trans('validation.captcha')
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect(url('admin/login'));
     }
 
 

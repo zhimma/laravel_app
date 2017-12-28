@@ -8,6 +8,7 @@ use App\Repositories\Eloquent\MenuRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class MenuController extends Controller
 {
@@ -106,17 +107,19 @@ class MenuController extends Controller
      * @author 马雄飞 <xiongfei.ma@pactera.com>
      * @date   2017年12月27日22:30:37
      */
-    public function update(MenuRequest $request,$id)
+    public function update(MenuRequest $request, $id)
     {
+
         $menu = $this->menu->find($id);
         if (!empty($menu)) {
-            $res = $menu->where('id',$id)->update($request->all());
+            $res = $this->menu->update($request->all(),$id);
             if ($res) {
                 $this->menu->refreshAndGetAllMenus(true);
                 flash('修改成功', 'success');
             } else {
                 flash('修改失败', 'error');
             }
+
             return redirect()->back();
 
         } else {
@@ -127,14 +130,24 @@ class MenuController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除
      *
-     * @param  \App\Models\Menu $menu
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2017年12月28日15:13:59
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
-        //
+        $res = $this->menu->delete($id);
+        if ($res) {
+            $this->menu->refreshAndGetAllMenus(true);
+            flash('删除成功', 'success');
+        } else {
+            flash('删除失败', 'error');
+        }
+        return redirect()->back();
     }
 }
