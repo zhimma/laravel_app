@@ -1,4 +1,5 @@
 <div class="menu_section">
+    {{ dd($menuList) }}
     <h3>General</h3>
     <ul class="nav side-menu">
         <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>

@@ -2,9 +2,13 @@
 
 namespace App\Repositories\Presenter;
 
-use App\Repositories\Eloquent\MenuRepository;
 use Illuminate\Support\Facades\Cache;
 
+/**
+ * 菜单
+ *
+ * @package App\Repositories\Presenter
+ */
 class MenuPresenter
 {
     /**
@@ -27,7 +31,6 @@ class MenuPresenter
         }
 
         return $option;
-
     }
 
     /**
@@ -52,13 +55,9 @@ class MenuPresenter
             }
             $mainStr .= '</ol></li>';
         }
-
-
         $mainStr .= '</ol>';
 
         return $mainStr;
-
-
     }
 
     /**
@@ -83,6 +82,17 @@ class MenuPresenter
         return $secondMenusStr;
     }
 
+    /**
+     * 菜单按钮
+     *
+     * @param      $menu
+     * @param bool $bool
+     *
+     * @return string
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2017年12月28日15:54:30
+     */
     public function getActionButtons($menu, $bool = true)
     {
         $buttons = '<div class="pull-right action-buttons">';
@@ -113,5 +123,10 @@ class MenuPresenter
         $buttons .= '</div>';
 
         return $buttons;
+    }
+
+    public function menuList($menus)
+    {
+
     }
 }
