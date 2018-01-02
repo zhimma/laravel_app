@@ -57,6 +57,7 @@ define(function (require, exports, module) {
             $(".j_create_menu").find('.hidden_area').remove();
             $(".j_create_menu").find("input[name='name']").val(data.name);
             $(".j_create_menu").find("input[name='url']").val(data.url);
+            $(".j_create_menu").find("input[name='slug']").val(data.slug);
             select2.val(pid).trigger('change');
             $(".j_create_menu").find("input[name='icon']").val(data.icon);
             $(".j_create_menu").find("input[name='sort']").val(data.sort);

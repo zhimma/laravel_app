@@ -117,6 +117,11 @@ abstract class BaseRepository implements RepositoryInterface
     public function update(array $attributes, $id)
     {
         $data = $this->model->fill($attributes)->toArray();
+        $data = array_filter($data, function ($val) {
+            if (!is_null($val)) {
+                return true;
+            }
+        });
 
         return $this->model->where('id', $id)->update($data);
     }

@@ -72,6 +72,13 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单权限标识</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" name="slug" value="{{ old('slug') }}" class="form-control"
+                                           placeholder="菜单权限标识">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <select class="select2_single form-control" name="parent_id" tabindex="-1">
