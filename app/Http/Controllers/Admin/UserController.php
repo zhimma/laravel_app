@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd($this->admin->all());
+        return view('admin.user.index');
     }
 
     /**

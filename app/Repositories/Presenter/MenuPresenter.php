@@ -138,13 +138,15 @@ class MenuPresenter
     {
         $html = '';
         foreach ($menus as $key => $value) {
-            $html .= '<li><a><i class="fa fa-home"></i> ' . $value['name'] . ' <span class="fa fa-chevron-down"></span></a>';
             if (!empty($value['_child'])) {
+                $html .= '<li><a><i class="fa fa-home"></i> ' . $value['name'] . ' <span class="fa fa-chevron-down"></span></a>';
                 $html .= '<ul class="nav child_menu">';
                 foreach ($value['_child'] as $k => $v) {
                     $html .= '<li><a href="'.url($v['url']).'">'.$v['name'].'</a></li>';
                 }
                 $html .= '</ul></li>';
+            }else{
+                $html .= '<li><a href="'.url($value['url']).'"><i class="fa fa-home"></i> ' . $value['name'] . '</a>';
             }
         }
         return $html;

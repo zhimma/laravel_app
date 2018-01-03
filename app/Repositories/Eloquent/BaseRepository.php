@@ -76,10 +76,13 @@ abstract class BaseRepository implements RepositoryInterface
      */
     public function create(array $attributes)
     {
-        $model = $this->model->newInstance($attributes);
-        $model->save();
-        $this->resetModel();
+        $data = $this->model->fill($attributes)->toArray();
+        $data = array_filter($data,function($value){
+            return is_null($value) ? false : true;
+        });
 
+        $model = $this->model->create($data);
+//        $this->resetModel();
         return $this->parserResult($model);
     }
 
@@ -117,12 +120,9 @@ abstract class BaseRepository implements RepositoryInterface
     public function update(array $attributes, $id)
     {
         $data = $this->model->fill($attributes)->toArray();
-        $data = array_filter($data, function ($val) {
-            if (!is_null($val)) {
-                return true;
-            }
+        $data = array_filter($data,function($value){
+            return is_null($value) ? false : true;
         });
-
         return $this->model->where('id', $id)->update($data);
     }
 
