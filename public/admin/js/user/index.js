@@ -10,14 +10,6 @@ define(function (require, exports, module) {
                 $('#user_dataTables').DataTable({
                     "autoWidth":true,
                     "deferRender":false,
-                    "info":true,
-                    "jQueryUI":true,
-                    "lengthChange":true,
-                    "ordering":true,
-                    "paging":true,
-                    "processing":false,
-                    "scrollX":false,
-                    "scrollY":false,
                     "searching":true,
                     "stateSave":false,
                     serverSide : true,
@@ -25,15 +17,35 @@ define(function (require, exports, module) {
                         url : url,
                         type : 'get'
                     },
-                    pageLength: 2,
+                    // pageLength: 2,
                     columns:[
-                        {data : 'id'},
-                        {data : 'name'},
-                        {data : 'phone'},
-                        {data : 'email'},
-                        {data : 'name'},
-                        {data : 'name'},
-                        {data : 'name'},
+                        {
+                            data : 'id',
+                            name : 'id',
+                            orderable:true
+                        },
+                        {
+                            data : 'name',
+                            name : 'name'
+
+                        },
+                        {
+                            data : 'phone',
+                            name : 'phone'
+                        },
+                        {
+                            data : 'email',
+                            name : 'email'
+                        },
+                        {
+                            data : 'name'
+                        },
+                        {
+                            data : 'name'
+                        },
+                        {
+                            data : 'name'
+                        },
                     ]
                 });
             } );

@@ -23,7 +23,7 @@ class MenusTableSeeder extends Seeder
 
         $menu = new \App\Models\Menu();
         $menu->parent_id = 0;
-        $menu->name = '权限设置';
+        $menu->name = '用户管理';
         $menu->url = '';
         $menu->icon = '';
         $menu->sort = 0;
@@ -32,7 +32,7 @@ class MenusTableSeeder extends Seeder
 
         $menu = new \App\Models\Menu();
         $menu->parent_id = 0;
-        $menu->name = '菜单设置';
+        $menu->name = '菜单管理';
         $menu->url = 'admin/menu';
         $menu->icon = '';
         $menu->sort = 0;
@@ -40,9 +40,9 @@ class MenusTableSeeder extends Seeder
         $menu->save();
 
         $menu = new \App\Models\Menu();
-        $menuData = $menu::where('name','权限设置')->first();
+        $menuData = $menu::where('name','用户管理')->first();
         $menu->parent_id = $menuData->id;
-        $menu->name = '用户管理';
+        $menu->name = '用户列表';
         $menu->url = 'admin/user';
         $menu->slug = 'admin.user';
         $menu->icon = '';
@@ -51,9 +51,9 @@ class MenusTableSeeder extends Seeder
         $menu->save();
 
         $menu = new \App\Models\Menu();
-        $menuData = $menu::where('name','权限设置')->first();
+        $menuData = $menu::where('name','用户管理')->first();
         $menu->parent_id = $menuData->id;
-        $menu->name = '角色管理';
+        $menu->name = '用户角色管理';
         $menu->url = 'admin/role';
         $menu->slug = 'admin.role';
         $menu->icon = '';
@@ -62,9 +62,9 @@ class MenusTableSeeder extends Seeder
         $menu->save();
 
         $menu = new \App\Models\Menu();
-        $menuData = $menu::where('name','权限设置')->first();
+        $menuData = $menu::where('name','用户管理')->first();
         $menu->parent_id = $menuData->id;
-        $menu->name = '权限管理';
+        $menu->name = '用户权限管理';
         $menu->url = 'permission/role';
         $menu->slug = 'permission.role';
         $menu->icon = '';
@@ -72,15 +72,5 @@ class MenusTableSeeder extends Seeder
         $menu->is_show = 1;
         $menu->save();
 
-        $menu = new \App\Models\Menu();
-        $menuData = $menu::where('name','菜单设置')->first();
-        $menu->parent_id = $menuData->id;
-        $menu->name = '菜单管理';
-        $menu->url = 'admin/menu';
-        $menu->slug = 'admin.menu';
-        $menu->icon = '';
-        $menu->sort = 0;
-        $menu->is_show = 1;
-        $menu->save();
     }
 }

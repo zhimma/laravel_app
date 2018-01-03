@@ -1,6 +1,5 @@
 @extends('admin.layout.layout')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/datatables.net-bootstrap3/css/dataTables.bootstrap.css') }}">
 @endsection
 

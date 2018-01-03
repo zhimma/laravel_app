@@ -58,18 +58,10 @@ class UserController extends Controller
      */
     public function show(Request $request)
     {
-        $data = $this->admin->all();
-        $return = [
-            //第几页
-            'draw'         => 2,
-            //总数量
-            'recordsTotal' => 4,
-            //查询到的总数量
-            'recordsFiltered' => 4,
-            'data' =>$data
-        ];
 
-        return $return;
+        $return = $this->admin->ajaxGetUsers($request);
+
+        return response()->json($return);
     }
 
     /**
