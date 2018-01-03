@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\AdminRepository as Admin;
+
 class UserController extends Controller
 {
     private $admin;
@@ -38,7 +39,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,20 +49,34 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 展示数据
      *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date   2018年01月03日15:36:59
      */
-    public function show(User $user)
+    public function show(Request $request)
     {
-        //
+        $data = $this->admin->all();
+        $return = [
+            //第几页
+            'draw'         => 2,
+            //总数量
+            'recordsTotal' => 4,
+            //查询到的总数量
+            'recordsFiltered' => 4,
+            'data' =>$data
+        ];
+
+        return $return;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -71,8 +87,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\User                $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -83,7 +100,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

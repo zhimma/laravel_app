@@ -15,7 +15,11 @@
             custom:'build/js/custom.js',
             nestable:'vendors/nestable/jquery.nestable.js',
             select2:'vendors/select2/dist/js/select2.js',
-            layer:"vendors/layer/layer.js"
+            layer:"vendors/layer/layer.js",
+            dataTables:"vendors/datatables.net/js/jquery.dataTables.js",
+            dataTables_bs3:"vendors/datatables.net-bootstrap3/js/dataTables.bootstrap.js"
+
+
         },
         preload:[
             'jQuery'

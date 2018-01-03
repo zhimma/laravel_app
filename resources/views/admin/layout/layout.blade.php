@@ -27,10 +27,7 @@
         paths.build = paths.asset+'/build';
     </script>
     <script src="{{ asset('admin/js/config.js') }}"></script>
-    <script>
-        seajs.use(['module_js/layout/layout'],function () {
-        })
-    </script>
+
 </head>
 
 <body class="nav-md">
@@ -103,6 +100,10 @@
     </div>
 </div>
 @yield('js')
+<script>
+    seajs.use(['module_js/layout/layout'],function () {
+    })
+</script>
 <!-- /gauge.js -->
 </body>
 </html>
