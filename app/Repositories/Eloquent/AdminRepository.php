@@ -30,12 +30,12 @@ class AdminRepository extends BaseRepository
 
         //搜索
 
-        $search['value'] = $request->input('value','');
-        $search['regex'] = $request->input('regex',false);
+        $search['value'] = $request->input('search.value','');
+        $search['regex'] = $request->input('search.regex',false);
         $model = $this->makeModel();
         $totalRecords = $model::count();
         if($search['value']){
-            $model = $model->where('name','like',"%{$search['$value']}%");
+            $model = $model->where('name','like',"%{$search['value']}%");
         }
         $data = $model->orderBy($order['name'],$order['dir'])->offset($start)->limit($length)->get()->toArray();
         return [
