@@ -6,8 +6,6 @@
 
 namespace App\Repositories\Eloquent;
 
-use Illuminate\Support\Facades\Request;
-
 /**
  *
  *
