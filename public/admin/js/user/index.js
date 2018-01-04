@@ -1,7 +1,7 @@
 define(function (require, exports, module) {
     require('dataTables');
-    require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     // require('dataTables_bs3');
+    require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     module.exports = {
         init:function(){
             $(document).ready( function () {

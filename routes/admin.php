@@ -22,9 +22,15 @@ Route::prefix('admin')->group(function(){
         $this->post('password/reset', 'ResetPasswordController@reset');*/
     });
 
+
     Route::namespace('Admin')->middleware(['auth.admin:admin'])->group(function(){
         Route::resource('index','IndexController');
+        Route::get('user/ajaxGetList',"UserController@ajaxGetList");
         Route::resource('user','UserController');
         Route::resource('menu','MenuController');
+        Route::get('permission/ajaxGetList',['uses' => 'PermissionController@ajaxGetList']);
+        Route::resource('permission','PermissionController');
+        Route::resource('role','RoleController');
     });
+
 });
