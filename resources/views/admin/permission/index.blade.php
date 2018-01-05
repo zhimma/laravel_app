@@ -16,6 +16,19 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>权限列表<small></small></h2>
+                        <div class="pull-right">
+                            {!! BA([
+                            'title'=>'新增权限',
+                            'class'=>'btn btn-default',
+                            'url' => 'admin/user/create',
+                            'params'=>[],
+                            'mark'=>'js_mark_class',
+                            'size' => ['w'=>'60%','h'=>'80%'],
+                            'type' => '2',
+                            'callback'=>'createPermission'
+                            ]) !!}
+                            {{--<button class="btn btn-default">新增权限</button>--}}
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -29,6 +42,7 @@
                                 <th>权限描述</th>
                                 <th>添加时间</th>
                                 <th>修改时间</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                             <tbody>

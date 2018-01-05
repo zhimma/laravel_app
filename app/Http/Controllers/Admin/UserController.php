@@ -26,6 +26,13 @@ class UserController extends Controller
         return view('admin.user.index');
     }
 
+    public function ajaxGetList(Request $request)
+    {
+        $return = $this->admin->ajaxGetList($request);
+
+        return response()->json($return);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,12 +63,9 @@ class UserController extends Controller
      * @author 马雄飞 <xiongfei.ma@pactera.com>
      * @date   2018年01月03日15:36:59
      */
-    public function show(Request $request)
+    public function show($id)
     {
 
-        $return = $this->admin->ajaxGetUsers($request);
-
-        return response()->json($return);
     }
 
     /**

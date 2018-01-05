@@ -1,21 +1,23 @@
 <?php
 /**
  * @author 马雄飞 <xiongfei.ma@pactera.com>
- * @date   2017/12/14 15:13
+ * @date   2018/1/4 下午10:05
  */
 
 namespace App\Repositories\Eloquent;
+
+use App\Models\Permission;
 
 /**
  *
  *
  * @package App\Repositories\Eloquent
  */
-class AdminRepository extends BaseRepository
+class PermissionRepository extends BaseRepository
 {
     public function model()
     {
-        return "App\Models\Admin";
+        return Permission::class;
     }
 
     public function ajaxGetList($request)
@@ -34,7 +36,7 @@ class AdminRepository extends BaseRepository
         $model = $this->makeModel();
         $totalRecords = $model::count();
         if ($search['value']) {
-            $model = $model->where('name', 'like', "%{$search['value']}%");
+            $model = $model->where('display_name', 'like', "%{$search['value']}%");
         }
         $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get()->toArray();
 
@@ -47,5 +49,6 @@ class AdminRepository extends BaseRepository
             'recordsFiltered' => count($data),
             'data'            => $data
         ];
+
     }
 }
