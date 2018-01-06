@@ -1,6 +1,6 @@
 @extends('admin.layout.layout')
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/datatables.net-bootstrap3/css/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 @endsection
 @section('content')
     <!-- page content -->
@@ -56,8 +56,6 @@
 @endsection
 
 @section('js')
-    {{--<script src="{{ asset('admin/vendors/datatables.net/js/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('admin/vendors/datatables.net-bootstrap3/js/dataTables.bootstrap.js') }}"></script>--}}
     <script>
         seajs.use(['module_js/permission/index'],function(index){
             index.init();

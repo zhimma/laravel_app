@@ -6,6 +6,7 @@ define(function (require, exports, module) {
         require('nprogress');
         require('fastclick');
         require('layer');
+
     });
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 
@@ -17,6 +18,7 @@ define(function (require, exports, module) {
             window.location.href = href;
         } else {
             e.preventDefault();
+            var load;
             $.ajax({
                 url: href,
                 type: 'get',
@@ -26,8 +28,6 @@ define(function (require, exports, module) {
                     load = layer.load(2);
                 },
                 success: function (data) {
-                    console.log(data);
-
                     layer.close(load);
                     var index = layer.open({
                         type: 1, //1,2
@@ -45,12 +45,11 @@ define(function (require, exports, module) {
                         content: !data ? '暂时没有数据' : data,
                         btn: jsonData.haveBtn != undefined ? jsonData.haveBtn : ['保存', '取消'],
                         yes: function (index, layero) {
-
                             if (jsonData.hasOwnProperty('callback')) { //　加入回调 @祝海亮
                                 var callback = jsonData['callback'];
                                 if (callback.length > 0) {
                                     if (typeof window[callback] === 'function') {
-                                        window[callback]();
+                                        window[callback](this,jsonData);
                                         return false;
                                     }
                                     throw new TypeError('未找到或未定义 ' + callback + ' 方法');
