@@ -1,13 +1,11 @@
 define(function (require, exports, module) {
     module.exports = {
         init: function () {
-            require('dataTables');
-            // require('dataTables_bs3');
-            require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
-
+           require.async('dataTables_bs3',function(){
+               require('dataTables');
+           });
             $(document).ready(function () {
                 var url = $("#permission_dataTables").data('url');
-
                 $('#permission_dataTables').DataTable({
                     "autoWidth": true,
                     "deferRender": false,

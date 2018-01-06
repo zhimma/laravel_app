@@ -20,14 +20,13 @@
                             {!! BA([
                             'title'=>'新增权限',
                             'class'=>'btn btn-default',
-                            'url' => 'admin/user/create',
+                            'url' => 'admin/permission/create',
                             'params'=>[],
                             'mark'=>'js_mark_class',
-                            'size' => ['w'=>'60%','h'=>'80%'],
-                            'type' => '2',
+                            'size' => ['50%','60%'],
+                            'jump' => false,
                             'callback'=>'createPermission'
                             ]) !!}
-                            {{--<button class="btn btn-default">新增权限</button>--}}
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -57,6 +56,8 @@
 @endsection
 
 @section('js')
+    {{--<script src="{{ asset('admin/vendors/datatables.net/js/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('admin/vendors/datatables.net-bootstrap3/js/dataTables.bootstrap.js') }}"></script>--}}
     <script>
         seajs.use(['module_js/permission/index'],function(index){
             index.init();

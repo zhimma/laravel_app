@@ -35,19 +35,14 @@ function BA(array $array = [])
 {
     $url = $array['url'];
     $user = Auth::user();
-    //type = 1  a have href
-    //type = 2  a not have href
-    //type = 3  button
-    if(!$user->can($url)){
+    if (!$user->can($url)) {
         return '';
     }
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');
-    if($array['type'] == 1){
-        return "<a href='".url($url)."' js_mark_class='".$array['mark']."' class='".$array['class']."' data-json='".$jsonData."'>{$array['title']}</a>";
-    } elseif ($array['type'] == 2) {
-        return "<a href='javascript:;' js_mark_class='" . $array['mark'] . "' data-url='" . $url . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
-    } else {
-        return "<button  data-url='" . $url . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</button>";
+    if ($array['jump']) {
+        return "<a href='" . url($url) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+    } else{
+        return "<a href='" . url($url) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     }
 
 }
