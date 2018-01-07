@@ -49,7 +49,9 @@ define(function (require, exports, module) {
                             render:function(data,type,row,meta){
                                 return "<button class='btn btn-sm btn-primary' href='javascript:;' data-id='"+data+"'>编辑</button>" +
                                     "<button class='btn btn-sm btn-danger' href='javascript:;' data-id='"+data+"'>删除</button>";
-                            }
+                            },
+                            orderable: false
+
                         }
                     ]
                 });

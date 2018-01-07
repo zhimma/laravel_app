@@ -16,12 +16,13 @@ define(function (require, exports, module) {
             sendAjax(params, function (data) {
                 if(data.status == 1){
                     if(data.data.status == 1){
-                        layer.msg(data.data.msg,function(){
-                            layer.closeAll();
+                        layer.msg(data.data.msg,{time:2000},function(){
+                            // layer.closeAll();
+                            window.location.reload();
                         });
                     }else{
                         var str = '<div class="alert alert-danger"><ul>';
-                        $.each(data.data.msg,{time:1000},function(i,v){
+                        $.each(data.data.msg,{time:2000},function(i,v){
                             str += '<li>'+v+'</li>'
                         });
                         str += '</ul></div>';

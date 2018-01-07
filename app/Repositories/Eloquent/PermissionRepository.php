@@ -45,7 +45,7 @@ class PermissionRepository extends BaseRepository
             //总数量
             'recordsTotal'    => $totalRecords,
             //查询到的总数量
-            'recordsFiltered' => count($data),
+            'recordsFiltered' => $totalRecords,
             'data'            => $data
         ];
 
