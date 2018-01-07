@@ -65,8 +65,19 @@ class MenusTableSeeder extends Seeder
         $menuData = $menu::where('name','用户管理')->first();
         $menu->parent_id = $menuData->id;
         $menu->name = '用户权限管理';
-        $menu->url = 'permission/role';
-        $menu->slug = 'permission.role';
+        $menu->url = 'admin/permission';
+        $menu->slug = 'admin.permission';
+        $menu->icon = '';
+        $menu->sort = 0;
+        $menu->is_show = 1;
+        $menu->save();
+
+        $menu = new \App\Models\Menu();
+        $menuData = $menu::where('name','用户权限管理')->first();
+        $menu->parent_id = $menuData->id;
+        $menu->name = '添加权限';
+        $menu->url = 'admin/permission/create';
+        $menu->slug = 'admin.permission.create';
         $menu->icon = '';
         $menu->sort = 0;
         $menu->is_show = 1;

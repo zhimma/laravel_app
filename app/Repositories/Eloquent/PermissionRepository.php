@@ -30,14 +30,13 @@ class PermissionRepository extends BaseRepository
         $order['dir'] = $request->input('order.0.dir', 'asc');
 
         //搜索
-
         $search['value'] = $request->input('search.value', '');
         $search['regex'] = $request->input('search.regex', false);
         $model = $this->makeModel();
-        $totalRecords = $model::count();
         if ($search['value']) {
             $model = $model->where('display_name', 'like', "%{$search['value']}%");
         }
+        $totalRecords = $model::count();
         $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get()->toArray();
 
         return [

@@ -32,11 +32,13 @@ class AdminRepository extends BaseRepository
         $search['value'] = $request->input('search.value', '');
         $search['regex'] = $request->input('search.regex', false);
         $model = $this->makeModel();
-        $totalRecords = $model::count();
         if ($search['value']) {
             $model = $model->where('name', 'like', "%{$search['value']}%");
         }
-        $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get()->toArray();
+        $totalRecords = $model->count();
+
+        $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get();
+
 
         return [
             //第几页
@@ -44,7 +46,7 @@ class AdminRepository extends BaseRepository
             //总数量
             'recordsTotal'    => $totalRecords,
             //查询到的总数量
-            'recordsFiltered' => count($data),
+            'recordsFiltered' => $totalRecords,
             'data'            => $data
         ];
     }

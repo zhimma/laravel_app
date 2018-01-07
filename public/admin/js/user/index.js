@@ -17,7 +17,7 @@ define(function (require, exports, module) {
                         url : url,
                         type : 'get'
                     },
-                    // pageLength: 2,
+                    pageLength: 10,
                     columns:[
                         {
                             data : 'id',
