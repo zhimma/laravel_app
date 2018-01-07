@@ -25,6 +25,7 @@
         paths.module_js = paths.asset+'/js';
         paths.vendors = paths.asset+'/vendors';
         paths.build = paths.asset+'/build';
+        js_csrf_token = '{{  csrf_token() }}';
     </script>
     <script src="{{ asset('admin/js/config.js') }}"></script>
 

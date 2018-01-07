@@ -15,7 +15,6 @@ define(function (require, exports, module) {
                         url: url,
                         type: 'get'
                     },
-                    pageLength: 10,
                     columns: [
                         {
                             data: 'display_name',

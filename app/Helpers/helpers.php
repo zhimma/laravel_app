@@ -38,6 +38,7 @@ function BA(array $array = [])
     if (!$user->can($url)) {
         return '';
     }
+    $array['url'] = url($url);
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');
     if ($array['jump']) {
         return "<a href='" . url($url) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
