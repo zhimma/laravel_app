@@ -2,7 +2,7 @@ define(function (require, exports, module) {
     require('dataTables');
     require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     module.exports = {
-        init: function () {
+        init: function (edit_btn,delete_btn) {
             $(document).ready(function () {
                 var url = $("#permission_dataTables").data('url');
                 $('#permission_dataTables').DataTable({
@@ -47,8 +47,9 @@ define(function (require, exports, module) {
                             data:'id',
                             name:'id',
                             render:function(data,type,row,meta){
-                                return "<button class='btn btn-sm btn-primary' href='javascript:;' data-id='"+data+"'>编辑</button>" +
-                                    "<button class='btn btn-sm btn-danger' href='javascript:;' data-id='"+data+"'>删除</button>";
+                                var str =  "<div data-id='"+data+"'>"+edit_btn + delete_btn +"</div>";
+                                window.layWindow();
+                                return str;
                             },
                             orderable: false
 

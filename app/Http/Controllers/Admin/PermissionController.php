@@ -74,7 +74,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd(111);
+        return view('admin.permission.edit');
     }
 
     /**

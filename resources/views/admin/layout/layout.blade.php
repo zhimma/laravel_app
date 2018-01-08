@@ -102,7 +102,7 @@
 </div>
 @yield('js')
 <script>
-    seajs.use(['module_js/layout/layout'],function () {
+    seajs.use(['module_js/layout/layout'],function (layout) {
     })
 </script>
 <!-- /gauge.js -->

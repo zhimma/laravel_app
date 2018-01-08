@@ -57,8 +57,29 @@
 
 @section('js')
     <script>
+        var edit_btn = `{!! BA([
+                            'title'=>'编辑',
+                            'class'=>'btn btn-sm btn-primary',
+                            'url' => 'admin/permission/edit',
+                            'params'=>[],
+                            'mark'=>'js_mark_class',
+                            'size' => ['50%','60%'],
+                            'jump' => false,
+                            'callback'=>'edit_permission'
+                            ]) !!}`;
+        var delete_btn = `{!! BA([
+                            'title'=>'删除',
+                            'class'=>'btn btn-sm btn-danger',
+                            'url' => 'admin/permission/destroy',
+                            'params'=>[],
+                            'mark'=>'js_mark_class',
+                            'size' => ['50%','60%'],
+                            'jump' => false,
+                            'callback'=>'delete_permission'
+                            ]) !!}`;
+
         seajs.use(['module_js/permission/index'],function(index){
-            index.init();
+            index.init(edit_btn,delete_btn);
         })
     </script>
 @endsection
