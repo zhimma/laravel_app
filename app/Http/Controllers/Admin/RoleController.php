@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Eloquent\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    protected $role;
+
+    public function __construct(RoleRepository $role)
+    {
+        $this->role = $role;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,14 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.role.index');
+    }
+
+    public function ajaxGetList(Request $request)
+    {
+        $return = $this->role->ajaxGetList($request);
+
+        return response()->json($return);
     }
 
     /**

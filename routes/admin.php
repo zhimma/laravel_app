@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('menu','MenuController');
         Route::get('permission/ajaxGetList',['uses' => 'PermissionController@ajaxGetList']);
         Route::resource('permission','PermissionController');
+        Route::get('role/ajaxGetList',['uses' => 'RoleController@ajaxGetList']);
         Route::resource('role','RoleController');
     });
 
