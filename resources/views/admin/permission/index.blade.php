@@ -66,24 +66,23 @@
         var edit_btn = {
             'title': '编辑',
             'class': 'btn btn-sm btn-primary',
-            'url': 'admin/permission/edit',
+            'route': 'permission.edit',
             'slug': 'admin.permission.edit',
             'params': [],
             'mark': 'js_mark_class',
             'size': ['50%', '60%'],
-            'jump': false,
+            'jump': 0,
             'callback': 'edit_permission'
         };
         var delete_btn = {
             'title': '删除',
             'class': 'btn btn-sm btn-danger',
-            'url': 'admin/permission/destroy',
+            'route': 'permission.destroy',
             'slug': 'admin.permission.destroy',
             'params': [],
             'mark': 'js_mark_class',
-            'size': ['50%', '60%'],
-            'jump': false,
-            'callback': 'delete_permission'
+            'jump': 0,
+            'type' : 'button',
         };
 
         seajs.use(['module_js/permission/index'], function (index) {

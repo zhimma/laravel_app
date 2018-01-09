@@ -53,7 +53,7 @@
                             @if(old('id'))
                                 <div class="hidden_area">
                                     <input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">
-                                    <input type="hidden" class="" name="id" value="{{ old('id') }}">
+                                    <input type="hidden"  name="id" value="{{ old('id') }}">
                                 </div>
                             @endif
 

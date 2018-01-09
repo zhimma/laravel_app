@@ -22,6 +22,7 @@ class PermissionRepository extends BaseRepository
 
     public function ajaxGetList($request)
     {
+
         $draw = request('draw', 1);
         $start = request('start', 0);
         $length = request('length', 10);
@@ -36,9 +37,17 @@ class PermissionRepository extends BaseRepository
         if ($search['value']) {
             $model = $model->where('display_name', 'like', "%{$search['value']}%");
         }
-        $totalRecords = $model::count();
+        $totalRecords = $model->count();
         $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get()->toArray();
 
+        if($request->has('btn')){
+            $btn  = $request->input('btn');
+           foreach ($data as $key => &$value){
+               $btn['edit_btn']['params'] = ['id'=>$value['id']];
+               $btn['delete_btn']['params'] = ['id'=>$value['id']];
+               $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
+           }
+        }
         return [
             //第几页
             'draw'            => $draw,

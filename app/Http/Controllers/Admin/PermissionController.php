@@ -74,21 +74,21 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        dd(111);
-        return view('admin.permission.edit');
+        $data = $this->permission->find($id);
+
+        return view('admin.permission.edit')->with('data', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(PermissionRequest $request, $id)
     {
-        //
+
+        $res = $this->permission->update($request->input(), $id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
     /**

@@ -25,26 +25,30 @@ class PermissionRequest extends FormRequest
     {
         if (request('id', '')) {
             return [
-                'name' => 'required|unique:permissions,name,' . $this->id,
+                'name'         => 'required|unique:permissions,name,' . $this->id,
                 'display_name' => 'required',
-                'description' => 'max:100',
+                'description'  => 'max:100',
             ];
         } else {
             return [
-                'name' => 'required|unique:permissions,name',
+                'name'         => 'required|unique:permissions,name',
                 'display_name' => 'required',
-                'description' => 'max:100',
+                'description'  => 'max:100',
             ];
         }
     }
 
     public function messages()
     {
-        return  [
-            'name.required'      => '权限标识不能为空',
-            'name.unique'        => '权限标识已存在',
+        $message = [
+            'name.required'         => '权限标识不能为空',
             'display_name.required' => '权限名不能为空',
-            'description' => '“权限说明”不能大于100个字。',
+            'description'           => '“权限说明”不能大于100个字。',
         ];
+        if (request('id', '')) {
+            $message['name.unique'] = '权限标识已存在';
+        }
+
+        return $message;
     }
 }

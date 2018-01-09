@@ -33,6 +33,7 @@ function list_to_tree_key($list, $pk = 'id', $pid = 'pid', $child = '_child', $r
 
 function BA(array $array = [])
 {
+    $array['type'] = isset($array['type']) ? $array['type'] : 'a';
     $slug = $array['slug'];
     $route = $array['route'];
     $user = Auth::user();
@@ -40,10 +41,11 @@ function BA(array $array = [])
         return '';
     }
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');
-    if ($array['jump']) {
-        return "<a href='" . route($route,$array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
-    } else{
-        return "<a href='" . route($route,$array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+//    print_r($array);
+    if ($array['type'] == 'a') {
+        return "<a href='" . route($route, $array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+    } elseif ($array['type'] == 'button') {
+        return "<button data-href='" . route($route, $array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     }
 
 }

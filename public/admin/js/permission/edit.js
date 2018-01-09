@@ -3,9 +3,9 @@ define(function (require, exports, module) {
         init: function () {
             console.log('pages');
         },
-        createPermission: function () {
-            var url = $(".j_create_permission").data('url');
-            var formData = $(".j_create_permission").serialize();
+        edit_permission: function () {
+            var url = $(".j_edit_permission").data('url');
+            var formData = $(".j_edit_permission").serialize();
             var params = {
                 "url": url,
                 "type": "POST",
