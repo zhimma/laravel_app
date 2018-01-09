@@ -21,6 +21,7 @@
                             'title'=>'新增角色',
                             'class'=>'btn btn-default',
                             'url' => 'admin/role/create',
+                            'slug' => 'admin.role.create',
                             'params'=>[],
                             'mark'=>'js_mark_class',
                             'size' => ['50%','60%'],

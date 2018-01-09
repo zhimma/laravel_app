@@ -33,9 +33,10 @@ function list_to_tree_key($list, $pk = 'id', $pid = 'pid', $child = '_child', $r
 
 function BA(array $array = [])
 {
+    $slug = $array['slug'];
     $url = $array['url'];
     $user = Auth::user();
-    if (!$user->can($url)) {
+    if (!$user->can($slug)) {
         return '';
     }
     $array['url'] = url($url);
