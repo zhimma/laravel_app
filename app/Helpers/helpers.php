@@ -34,17 +34,16 @@ function list_to_tree_key($list, $pk = 'id', $pid = 'pid', $child = '_child', $r
 function BA(array $array = [])
 {
     $slug = $array['slug'];
-    $url = $array['url'];
+    $route = $array['route'];
     $user = Auth::user();
     if (!$user->can($slug)) {
         return '';
     }
-    $array['url'] = url($url);
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');
     if ($array['jump']) {
-        return "<a href='" . url($url) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+        return "<a href='" . route($route,$array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     } else{
-        return "<a href='" . url($url) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+        return "<a href='" . route($route,$array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     }
 
 }

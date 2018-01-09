@@ -20,13 +20,13 @@
                             {!! BA([
                             'title'=>'新增角色',
                             'class'=>'btn btn-default',
-                            'url' => 'admin/role/create',
+                            'route' => 'role.create',
                             'slug' => 'admin.role.create',
                             'params'=>[],
                             'mark'=>'js_mark_class',
                             'size' => ['50%','60%'],
                             'jump' => false,
-                            'callback'=>'createRole'
+                            'callback'=>'createPermission'
                             ]) !!}
                         </div>
                         <div class="clearfix"></div>

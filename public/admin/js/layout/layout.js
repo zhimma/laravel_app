@@ -11,6 +11,7 @@ define(function (require, exports, module) {
     $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     window.layWindow = function(){
         $("a[js_mark_class='js_mark_class']").unbind('click').on("click", function (e) {
+            alert(11);
             var jsonData = $(this).data('json');
             var href = $(this).attr('href');
             if (jsonData.jump) {

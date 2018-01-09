@@ -5,7 +5,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3 error-box">
         </div>
     </div>
-    <form class="form-horizontal form-label-left j_create_permission" data-url="{{ url('admin/permission') }}" action="{{ url('admin/permission') }}"
+    <form class="form-horizontal form-label-left j_create_permission" data-url="{{ route('permission.store') }}" action="{{ route('permission.store') }}"
           method="POST">
         {{ csrf_field() }}
         <div class="form-group">
