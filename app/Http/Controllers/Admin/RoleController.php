@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\RoleRequest;
 use App\Repositories\Eloquent\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -39,7 +40,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role.create');
     }
 
     /**
@@ -48,9 +49,14 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        //
+        $res = $this->role->create($request->post());
+        if ($res) {
+            return ['status' => 1, 'msg' => '新增成功'];
+        } else {
+            return ['status' => 0, 'msg' => '新增失败'];
+        }
     }
 
     /**
@@ -61,7 +67,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.role.show');
     }
 
     /**
@@ -72,7 +78,8 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->role->find($id);
+        return view('admin.role.edit')->with('data',$data);
     }
 
     /**
@@ -82,9 +89,14 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
-        //
+        $res = $this->role->update($request->input(), $id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
     /**

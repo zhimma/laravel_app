@@ -26,7 +26,7 @@
                             'mark'=>'js_mark_class',
                             'size' => ['50%','60%'],
                             'jump' => false,
-                            'callback'=>'createPermission'
+                            'callback'=>'create_role'
                             ]) !!}
                         </div>
                         <div class="clearfix"></div>
@@ -58,8 +58,43 @@
 
 @section('js')
     <script>
+        var auth_btn = {
+            'title': '授权',
+            'class': 'btn btn-sm btn-success',
+            'route': 'role.show',
+            'slug': 'admin.role.show',
+            'params': [],
+            'mark': 'js_mark_class',
+            'size': ['50%', '60%'],
+            'jump': 0,
+            'callback': 'auth_role'
+        };
+        var edit_btn = {
+            'title': '编辑',
+            'class': 'btn btn-sm btn-primary',
+            'route': 'role.edit',
+            'slug': 'admin.role.edit',
+            'params': [],
+            'mark': 'js_mark_class',
+            'size': ['50%', '60%'],
+            'jump': 0,
+            'callback': 'edit_role'
+        };
+
+        var delete_btn = {
+            'title': '删除',
+            'class': 'btn btn-sm btn-danger',
+            'route': 'role.destroy',
+            'slug': 'admin.role.destroy',
+            'params': [],
+            'mark': 'js_mark_class',
+            'jump': 0,
+            'type' : 'button',
+        };
+        var btns = {'btn':{'auth_btn':auth_btn,'edit_btn':edit_btn,'delete_btn':delete_btn}};
+
         seajs.use(['module_js/role/index'],function(index){
-            index.init();
+            index.init(btns);
         })
     </script>
 @endsection

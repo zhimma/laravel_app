@@ -3,9 +3,9 @@ define(function (require, exports, module) {
         init: function () {
             console.log('pages');
         },
-        create_role: function () {
-            var url = $(".j_create_role").data('url');
-            var formData = $(".j_create_role").serialize();
+        edit_role: function () {
+            var url = $(".j_edit_role").data('url');
+            var formData = $(".j_edit_role").serialize();
             var params = {
                 "url": url,
                 "type": "POST",

@@ -23,6 +23,7 @@ class PermissionTableSeeder extends Seeder
             ['name' => 'admin.permission.destroy','display_name'=>'删除权限','description'=>'删除权限','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin.role.create','display_name'=>'添加角色','description'=>'添加角色','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin.role.edit','display_name'=>'编辑角色','description'=>'编辑角色','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
+            ['name' => 'admin.role.show','display_name'=>'角色授权','description'=>'角色授权','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
             ['name' => 'admin.role.destroy','display_name'=>'删除角色','description'=>'删除角色','created_at'=>Carbon::now(),'updated_at'=>Carbon::now()],
 
         ]);

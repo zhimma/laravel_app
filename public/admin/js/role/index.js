@@ -2,7 +2,8 @@ define(function (require, exports, module) {
     require('dataTables');
     require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     module.exports = {
-        init: function () {
+        init: function (btns) {
+            var that = this;
             $(document).ready(function () {
                 var url = $("#role_dataTables").data('url');
                 $('#role_dataTables').DataTable({
@@ -13,7 +14,9 @@ define(function (require, exports, module) {
                     serverSide: true,
                     ajax: {
                         url: url,
-                        type: 'get'
+                        type: 'get',
+                        data: btns
+
                     },
                     columns: [
                         {
@@ -44,18 +47,15 @@ define(function (require, exports, module) {
 
                         },
                         {
-                            data:'id',
-                            name:'id',
-                            render:function(data,type,row,meta){
-                                var str =  "<button class='btn btn-sm btn-primary' href='javascript:;' data-id='"+data+"'>编辑</button>" +
-                                    "<button class='btn btn-sm btn-danger' href='javascript:;' data-id='"+data+"'>删除</button>";
-                                return str;
-
-                            },
+                            data:'btn',
                             orderable: false
 
                         }
-                    ]
+                    ],
+                    "drawCallback": function () {
+                        window.layWindow();
+                        // that.delete_permission()
+                    }
                 });
             });
         }
