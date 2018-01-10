@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PermissionRequest;
+use App\Models\Admin;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Repositories\Eloquent\PermissionRepository;
+use App\Repositories\Eloquent\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * 权限控制器
+ *
+ * @package App\Http\Controllers\Admin
+ */
 class PermissionController extends Controller
 {
     protected $permission;
@@ -26,6 +35,15 @@ class PermissionController extends Controller
         return view('admin.permission.index');
     }
 
+    /**
+     * ajax获取列表
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月10日11:22:21
+     */
     public function ajaxGetList(Request $request)
     {
         $return = $this->permission->ajaxGetList($request);
@@ -43,6 +61,16 @@ class PermissionController extends Controller
         return view('admin.permission.create');
     }
 
+    /**
+     * 保存添加
+     * @param PermissionRequest $request
+     *
+     * @return array
+     * @throws \App\Repositories\Exceptions\RepositoryException
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月10日11:22:02
+     */
     public function store(PermissionRequest $request)
     {
         $res = $this->permission->create($request->post());
@@ -54,11 +82,11 @@ class PermissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
      *
-     * @param  int $id
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date
      */
     public function show($id)
     {
@@ -66,11 +94,13 @@ class PermissionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 修改
+     * @param $id
      *
-     * @param  int $id
+     * @return $this
      *
-     * @return \Illuminate\Http\Response
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月10日11:21:42
      */
     public function edit($id)
     {
@@ -79,7 +109,16 @@ class PermissionController extends Controller
         return view('admin.permission.edit')->with('data', $data);
     }
 
-
+    /**
+     * 更新保存
+     * @param PermissionRequest $request
+     * @param                   $id
+     *
+     * @return array
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月10日11:21:20
+     */
     public function update(PermissionRequest $request, $id)
     {
 
@@ -92,14 +131,20 @@ class PermissionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @return array
+     * @throws \Exception
+     * @throws \Throwable
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date
      */
     public function destroy($id)
     {
-        //
+        $this->permission->delete($id);
+        return ['status' => 1, 'msg' => '删除成功'];
+
     }
 }

@@ -7,6 +7,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Permission;
+use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 /**
  *
@@ -44,7 +46,7 @@ class PermissionRepository extends BaseRepository
             $btn  = $request->input('btn');
            foreach ($data as $key => &$value){
                $btn['edit_btn']['params'] = ['id'=>$value['id']];
-               $btn['delete_btn']['params'] = ['id'=>$value['id']];
+               $btn['delete_btn']['params'] = ['id'=> $value['id']];
                $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
            }
         }
@@ -58,5 +60,26 @@ class PermissionRepository extends BaseRepository
             'data'            => $data
         ];
 
+    }
+
+    /**
+     *
+     * @param $id
+     *
+     * @return int|void
+     * @throws \Exception
+     * @throws \Throwable
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date
+     */
+    public function delete($id)
+    {
+
+        DB::transaction(function () use ($id){
+            $permission = $this->model()::findOrFail($id);
+            $permission->roles()->sync([]);
+            $permission->forceDelete();
+        });
     }
 }

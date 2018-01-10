@@ -74,15 +74,38 @@ define(function (require, exports, module) {
         },
         delete_permission: function () {
             $("button[js_mark_class='js_mark_class']").on('click', function () {
+                var that = this;
                 layer.confirm('确定删除该条权限？', {
                     btn: ['确定','取消'] //按钮
                 }, function(){
-                    layer.msg('的确很重要', {icon: 1});
+                    var url = $(that).data('href');
+                    var params = {
+                        'url':url,
+                        'type' :'DELETE'
+                    };
+
+                     window.sendAjax(params,function(result){
+                         if(result.status == 1){
+                             if(result.data.status == 1){
+                                 layer.msg(result.data.msg,{time:2000},function(){
+                                     window.location.reload();
+                                 });
+                             }else{
+                                layer.msg(result.data.msg, {
+                                     time: 20000, //20s后自动关闭
+                                 });
+                             }
+                         }else{
+                             layer.msg(result.msg,function(){
+                                 return false;
+                             });
+                         }
+                    });
                 }, function(){
-                    layer.msg('也可以这样', {
+                    /*layer.msg('也可以这样', {
                         time: 20000, //20s后自动关闭
                         btn: ['明白了', '知道了']
-                    });
+                    });*/
                 });
             });
         }

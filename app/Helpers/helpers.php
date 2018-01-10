@@ -49,3 +49,10 @@ function BA(array $array = [])
     }
 
 }
+
+function debug($data, $type = 0, $break = 1)
+{
+    echo '<pre>';
+    !empty($type) ? var_dump($data) : print_r($data);
+    !empty($break) && exit();
+}

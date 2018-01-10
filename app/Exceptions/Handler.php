@@ -3,9 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,10 +52,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($request->ajax()){
-            if ($exception instanceof ValidationException) {
-                return new JsonResponse(['status'=>0,'msg'=>$exception->errors()]);
-            }
+        if($exception instanceof ModelNotFoundException){
+            return new JsonResponse(['status'=>0,'msg'=>$exception->getMessage()]);
+        }
+        if ($exception instanceof ValidationException) {
+            return new JsonResponse(['status'=>0,'msg'=>$exception->errors()]);
         }
 
         return parent::render($request, $exception);
