@@ -7,7 +7,6 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Permission;
-use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 /**

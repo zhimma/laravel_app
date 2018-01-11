@@ -25,12 +25,13 @@ Route::prefix('admin')->group(function(){
 
     Route::namespace('Admin')->middleware(['auth.admin:admin'])->group(function(){
         Route::resource('index','IndexController');
-        Route::get('user/ajaxGetList',"UserController@ajaxGetList");
+        Route::get('user/ajaxGetList',"UserController@ajaxGetList")->name('user.ajaxGetList');
         Route::resource('user','UserController');
         Route::resource('menu','MenuController');
-        Route::get('permission/ajaxGetList',['uses' => 'PermissionController@ajaxGetList']);
+        Route::get('permission/ajaxGetList',['uses' => 'PermissionController@ajaxGetList'])->name('permission.ajaxGetList');
         Route::resource('permission','PermissionController');
-        Route::get('role/ajaxGetList',['uses' => 'RoleController@ajaxGetList']);
+        Route::get('role/ajaxGetList',['uses' => 'RoleController@ajaxGetList'])->name('role.ajaxGetList');
+        Route::PUT('role/updateAuth/{id}',['uses' => 'RoleController@updateAuth'])->name('role.updateAuth');
         Route::resource('role','RoleController');
     });
 

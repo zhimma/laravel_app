@@ -45,7 +45,7 @@ function BA(array $array = [])
     if ($array['type'] == 'a') {
         return "<a href='" . route($route, $array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     } elseif ($array['type'] == 'button') {
-        return "<button data-href='" . route($route, $array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
+        return "<button type='button' data-href='" . route($route, $array['params']) . "' js_mark_class='" . $array['mark'] . "' class='" . $array['class'] . "' data-json='" . $jsonData . "'>{$array['title']}</a>";
     }
 
 }

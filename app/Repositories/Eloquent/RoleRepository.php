@@ -7,6 +7,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 /**
  *
@@ -59,5 +60,23 @@ class RoleRepository extends BaseRepository
             'data'            => $data
         ];
 
+    }
+
+    public function updateAuth($request,$id)
+    {
+        $permissions = $request->input('permission');
+        $role = $this->model()::findOrFail($id);
+        DB::transaction(function () use ($permissions, $id, $role) {
+            //清除以前的权限
+            $role->detachPermissions($role->perms);
+            $role->perms()->sync($permissions);
+        });
+    }
+
+    public function delete($id)
+    {
+        $role = $this->model()::findOrFail($id); // Pull back a given role
+        $role->users()->sync([]); // Delete relationship data
+        $role->perms()->sync([]); // Delete relationship data
     }
 }

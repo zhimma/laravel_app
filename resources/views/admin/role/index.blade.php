@@ -67,7 +67,7 @@
             'mark': 'js_mark_class',
             'size': ['50%', '60%'],
             'jump': 0,
-            'callback': 'auth_role'
+            'callback': 'show_role'
         };
         var edit_btn = {
             'title': '编辑',
