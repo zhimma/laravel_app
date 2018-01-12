@@ -29,7 +29,6 @@ class RoleRepository extends BaseRepository
         //排序
         $order['name'] = $request->input('columns.' . $request->input('order.0.column') . '.data');
         $order['dir'] = $request->input('order.0.dir', 'asc');
-
         //搜索
         $search['value'] = $request->input('search.value', '');
         $search['regex'] = $request->input('search.regex', false);
@@ -75,8 +74,10 @@ class RoleRepository extends BaseRepository
 
     public function delete($id)
     {
-        $role = $this->model()::findOrFail($id); // Pull back a given role
+        $role = Role::findOrFail($id); // Pull back a given role
         $role->users()->sync([]); // Delete relationship data
         $role->perms()->sync([]); // Delete relationship data
+        $role->forceDelete(); // 删除角色
+
     }
 }

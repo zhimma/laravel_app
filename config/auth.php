@@ -17,6 +17,7 @@ return [
         'guard'     => 'admin',
         'passwords' => 'users',
     ],
+    'model' => App\Models\Admin::class,
 
     /*
     |--------------------------------------------------------------------------

@@ -8,6 +8,7 @@ define(function (require, exports, module) {
                 var url = $("#user_dataTables").data('url');
 
                 $('#user_dataTables').DataTable({
+                    "order": [[ 0, "desc" ]],
                     "autoWidth":true,
                     "deferRender":false,
                     "searching":true,

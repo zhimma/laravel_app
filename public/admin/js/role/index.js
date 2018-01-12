@@ -7,6 +7,7 @@ define(function (require, exports, module) {
             $(document).ready(function () {
                 var url = $("#role_dataTables").data('url');
                 $('#role_dataTables').DataTable({
+                    "order": [[ 3, "desc" ]],
                     "autoWidth": true,
                     "deferRender": false,
                     "searching": true,
