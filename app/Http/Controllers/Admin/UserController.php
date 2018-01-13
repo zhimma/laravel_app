@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Eloquent\AdminRepository as Admin;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -71,10 +72,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        debug($role->toArray());
         $data = $this->admin->find($id);
-        return view('admin.user.edit')->with('data',$data);
+        return view('admin.user.edit')->with('data',$data->toArray());
     }
 
     /**

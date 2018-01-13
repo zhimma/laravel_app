@@ -47,7 +47,7 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">角色</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="select2_single form-control" name="role_id" tabindex="-1">
+                <select class="select2_single form-control" name="parent_id" tabindex="-1">
                     @inject('rolePresenter','App\Repositories\Presenter\RolePresenter')
                     {!! $rolePresenter->getRole($data['id']) !!}
                 </select>

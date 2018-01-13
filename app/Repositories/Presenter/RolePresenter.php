@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Presenter;
 
+use App\Models\Admin;
 use App\Models\Role;
 
 
@@ -14,32 +15,29 @@ class RolePresenter
 {
     public function getRole($id = 0)
     {
-
-        $role = Role::find($id);
+        if ($id) {
+            $user = Admin::findOrFail($id);
+            $role = $user->roles->toArray();
+        }
         $allRole = Role::all();
-        if ($role) {
+        if (isset($role) && !empty($role)) {
+            $roleIds = array_column($role, 'id');
             $option = '<option value="0">请选择角色</option>';
-            if (!empty($allRole)) {
-                foreach ($allRole as $value) {
-                    if ($value->id == $role->id) {
-                        $value->selected = "selected";
-                    } else {
-                        $value->selected = "";
-                    }
-
-                    $option .= "<option value='{$value->id}' $value->selected>{$value->name}</option>";
+            foreach ($allRole as $value) {
+                if (in_array($value->id, $roleIds)) {
+                    $value->selected = "selected";
+                } else {
+                    $value->selected = "";
                 }
+                $option .= "<option value='{$value->id}' $value->selected>{$value->name}</option>";
             }
         } else {
             $option = '<option value="0">请选择角色</option>';
-            if (!empty($allRole)) {
-                foreach ($allRole as $value) {
-                    $option .= "<option value='{$value->id}'>{$value->name}</option>";
-                }
+            foreach ($allRole as $value) {
+                $option .= "<option value='{$value->id}'>{$value->name}</option>";
             }
         }
 
         return $option;
-
     }
 }
