@@ -32,6 +32,7 @@ class AdminRepository extends BaseRepository
         $search['value'] = $request->input('search.value', '');
         $search['regex'] = $request->input('search.regex', false);
         $model = $this->makeModel();
+        $model = $model->where('is_del', 0);
         if ($search['value']) {
             $model = $model->where('name', 'like', "%{$search['value']}%");
         }
@@ -39,7 +40,15 @@ class AdminRepository extends BaseRepository
 
         $data = $model->orderBy($order['name'], $order['dir'])->offset($start)->limit($length)->get();
 
-
+        if ($request->has('btn') && !empty($data)) {
+            $btn = $request->input('btn');
+            foreach ($data as $key => &$value) {
+                $value['status'] = ($value['status'] == 1) ? '启用' : '禁用';
+                $btn['edit_btn']['params'] = ['id' => $value['id']];
+                $btn['delete_btn']['params'] = ['id' => $value['id']];
+                $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
+            }
+        }
         return [
             //第几页
             'draw'            => $draw,
