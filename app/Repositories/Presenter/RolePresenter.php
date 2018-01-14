@@ -29,12 +29,12 @@ class RolePresenter
                 } else {
                     $value->selected = "";
                 }
-                $option .= "<option value='{$value->id}' $value->selected>{$value->name}</option>";
+                $option .= "<option value='{$value->id}' $value->selected>{$value->display_name}</option>";
             }
         } else {
             $option = '<option value="0">请选择角色</option>';
             foreach ($allRole as $value) {
-                $option .= "<option value='{$value->id}'>{$value->name}</option>";
+                $option .= "<option value='{$value->id}'>{$value->display_name}</option>";
             }
         }
 

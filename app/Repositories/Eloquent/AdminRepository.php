@@ -6,6 +6,9 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Admin;
+use App\Models\Role;
+
 /**
  *
  *
@@ -15,7 +18,7 @@ class AdminRepository extends BaseRepository
 {
     public function model()
     {
-        return "App\Models\Admin";
+        return Admin::class;
     }
 
     public function ajaxGetList($request)
@@ -49,6 +52,7 @@ class AdminRepository extends BaseRepository
                 $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
             }
         }
+
         return [
             //第几页
             'draw'            => $draw,
@@ -58,5 +62,24 @@ class AdminRepository extends BaseRepository
             'recordsFiltered' => $totalRecords,
             'data'            => $data
         ];
+    }
+
+    public function update(array $attributes, $id)
+    {
+        $user = Admin::find($id);
+        foreach ($user->roles as $role) {
+            $roles[] = $role->id;
+        }
+        $old_role = Role::findOrfail($roles[0]);
+
+        $new_role = Role::findOrfail($attributes['role_id']);
+        // 删除原用户组
+        $user->detachRole($old_role);
+        $user->attachRole($new_role);
+        if ($user->hasRole($new_role->name)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

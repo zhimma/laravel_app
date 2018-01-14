@@ -5,10 +5,11 @@ define(function (require, exports, module) {
     var select2 = require('select2');
     module.exports = {
         init: function (btns) {
+            var that = this;
             $(document).ready(function () {
                 select2 = $('.select2_single').select2({
-                    placeholder : '请选择',
-                    allowClear:true
+                    placeholder: '请选择',
+                    allowClear: true
                 });
 
                 var url = $("#user_dataTables").data('url');
@@ -87,8 +88,44 @@ define(function (require, exports, module) {
                     },
                     "drawCallback": function () {
                         window.layWindow();
-                        // that.delete_role()
+                        that.delete_user()
                     }
+                });
+            });
+        },
+        delete_user: function () {
+            $("button[js_mark_class='js_mark_class']").on('click', function () {
+                var that = this;
+                layer.confirm('确定删除该用户？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    var url = $(that).data('href');
+                    var params = {
+                        'url':url,
+                        'type' :'DELETE'
+                    };
+                    window.sendAjax(params,function(result){
+                        if(result.status == 1){
+                            if(result.data.status == 1){
+                                layer.msg(result.data.msg,{time:2000},function(){
+                                    window.location.reload();
+                                });
+                            }else{
+                                layer.msg(result.data.msg, {
+                                    time: 20000, //20s后自动关闭
+                                });
+                            }
+                        }else{
+                            layer.msg(result.msg,function(){
+                                return false;
+                            });
+                        }
+                    });
+                }, function(){
+                    /*layer.msg('也可以这样', {
+                        time: 20000, //20s后自动关闭
+                        btn: ['明白了', '知道了']
+                    });*/
                 });
             });
         }

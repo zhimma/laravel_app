@@ -36,18 +36,17 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12">状态</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <label class="checkbox-inline">
-                    <input type="radio" name="status" value="1"> 启用
+                    <input type="radio" name="status" value="1" @if($data['status'] == 1) checked @endif> 启用
                 </label>
                 <label class="checkbox-inline">
-                    <input type="radio" name="status" value="0"> 禁用
+                    <input type="radio" name="status" value="0" @if($data['status'] == 0) checked @endif> 禁用
                 </label>
-
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">角色</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <select class="select2_single form-control" name="parent_id" tabindex="-1">
+                <select class="select2_single form-control" name="role_id" tabindex="-1">
                     @inject('rolePresenter','App\Repositories\Presenter\RolePresenter')
                     {!! $rolePresenter->getRole($data['id']) !!}
                 </select>
@@ -56,10 +55,9 @@
     </form>
 </div>
 <script>
-    seajs.use('module_js/permission/edit', function (edit) {
+    seajs.use('module_js/user/edit', function (edit) {
         edit.init();
-        window.edit_permission = edit.edit_permission;
-
+        window.edit_user = edit.edit_user;
     })
 </script>
 

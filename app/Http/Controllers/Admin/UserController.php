@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -54,7 +55,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -76,28 +76,27 @@ class UserController extends Controller
         return view('admin.user.edit')->with('data',$data->toArray());
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\User                $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+
+    public function update(UserRequest $request, $id)
     {
-        //
+        $res = $this->admin->update($request->input(),$id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = $this->admin->find($id);
+        if ($user->hasRole('admin')) {
+            return response()->json(['status' => 0, 'msg' => '删除管理员？搞事情？'], 422);
+        }
+        if ($user->id == \Auth::id()){
+            return response()->json(['status' => 0, 'erromsgr' => '不允许删除自己？搞事情？'], 422);
+        }
+        $user->delete();
+        return response()->json(['status' => 1, 'msg' => '删除成功']);
     }
 }
