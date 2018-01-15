@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('index','IndexController');
         Route::get('user/ajaxGetList',"UserController@ajaxGetList")->name('user.ajaxGetList');
         Route::resource('user','UserController');
+        Route::post('userInfo/upload',['uses'=>'UserInfoController@upload'])->name('userInfo.upload');
         Route::resource('userInfo','UserInfoController');
         Route::resource('menu','MenuController');
         Route::get('permission/ajaxGetList',['uses' => 'PermissionController@ajaxGetList'])->name('permission.ajaxGetList');

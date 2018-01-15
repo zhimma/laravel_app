@@ -4,9 +4,7 @@ define(function (require, exports, module) {
             $(".j_logout").click(function(){
                 $(this).find('form').submit();
             });
-            $(".j_user_info").click(function(){
 
-            });
         }
     }
 

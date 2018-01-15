@@ -35,16 +35,18 @@
         <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12">图像</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" name="avatar" value="{{ $data['avatar'] }}" class="form-control"
-                       placeholder="头像">
+                <button id="browse_button" type="button"
+                        class="browse_button btn btn-primary btn-mini"
+                        url="{{ route('userInfo.upload') }}">上传文件
+                </button>
             </div>
+
         </div>
     </form>
 </div>
 <script>
-    seajs.use('module_js/user/edit', function (edit) {
+    seajs.use('module_js/userInfo/edit', function (edit) {
         edit.init();
-        window.edit_user = edit.edit_user;
     })
 </script>
 

@@ -75,6 +75,13 @@ class UserInfoController extends Controller
         //
     }
 
+    public function upload(Request $request)
+    {
+        $path = $request->file('avatar')->store('avatars');
+
+        return $path;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
