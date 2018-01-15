@@ -37,7 +37,7 @@ function BA(array $array = [])
     $slug = $array['slug'];
     $route = $array['route'];
     $user = Auth::user();
-    if (!$user->can($slug)) {
+    if (!$user->can($slug) && !in_array($slug,['admin.userInfo.edit'])) {
         return '';
     }
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');

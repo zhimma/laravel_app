@@ -11,7 +11,19 @@
                     <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> 个人资料 </a></li>
+                    <li class="j_user_info">
+                        {!! BA([
+                            'title'=>'个人资料',
+                            'class'=>'',
+                            'route' => 'userInfo.edit',
+                            'slug' => 'admin.userInfo.edit',
+                            'params'=>['id'=>auth()->id()],
+                            'mark'=>'js_mark_class',
+                            'size' => ['50%','60%'],
+                            'jump' => false,
+                            'callback'=>'edit_user_info'
+                            ]) !!}
+                    </li>
                     <li>
                         <a href="javascript:;" class="j_logout">
                         <form action="{{ url('admin/logout') }}" method="POST">
