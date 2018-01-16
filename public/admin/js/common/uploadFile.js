@@ -6,7 +6,7 @@ define(function (require, exports, module) {
             //默认参数
             var set = {
                 flash_swf_url: paths.vendors + '/plupload/v2.1.2/js/Moxie.swf',//swf文件，当需要使用swf方式进行上传时需要配置该参数
-                silverlight_xap_url: paths.vendors + '/plupload/v2.1.2/jsMoxie.xap',//silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
+                silverlight_xap_url: paths.vendors + '/plupload/v2.1.2/js/Moxie.xap',//silverlight文件，当需要使用silverlight方式进行上传时需要配置该参数
                 filters: {
                     mime_types: [ //只允许上传图片
                         {title: "Image files", extensions: "jpg,gif,png"}
@@ -43,6 +43,7 @@ define(function (require, exports, module) {
         },
         //上传文件 调用
         uploadFile: function (config, _callback) {
+            console.log(config);
             var _self = this;
             var result = {'status': 0, 'msg': '', 'browse_button': config.browse_button};
 

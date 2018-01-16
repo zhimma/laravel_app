@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Storage;
 
 class UserInfoController extends Controller
 {
@@ -77,9 +80,20 @@ class UserInfoController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('avatar')->store('avatars');
 
-        return $path;
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $avatar = $request->file('avatar');
+            $extension = $avatar->extension();
+            //$store_result = $avatar->store('avatar');
+            $store_result = $avatar->storeAs('avatar', Carbon::now()->timestamp . $request->name);
+            $output = [
+                'extension' => $extension,
+                'store_result' => $store_result
+            ];
+            return response()->json(['status' => 1,'path' => Storage::url($store_result)]);
+        }
+        return response()->json(['status' => 0 ,'msg' => '上传错误']);
+
     }
 
     /**

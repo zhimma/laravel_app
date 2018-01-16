@@ -74,6 +74,7 @@ define(function (require, exports, module) {
             }
         })
     };
+    window.layWindow();
 
     window.sendAjax = function (arguments, callBack) {
         if (arguments.url == '' || arguments.url == undefined) {
