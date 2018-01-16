@@ -39,9 +39,8 @@
                         class="browse_button btn btn-primary btn-mini"
                         url="{{ route('userInfo.upload') }}">上传文件
                 </button>
+                <p></p>
             </div>
-            <div></div>
-
         </div>
     </form>
 </div>

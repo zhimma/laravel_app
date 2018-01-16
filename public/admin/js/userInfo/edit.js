@@ -20,10 +20,10 @@ define(function (require, exports, module) {
                     if (!res.status) {
                         throw res.msg;
                     }
-                    str = '<div class="j_' + res.browse_button + '_result"><img class="j_img"  src="' + res.path + '">';
+                    str = '<div class="j_' + res.browse_button + '_result"><img class="j_img" style="width: 300px" src="' + res.path + '">';
                     str += '<input type="hidden" class="form-control" name="avatar" value="' + res.path + '">';
                     str += '</div>';
-                    $('#' + res.browse_button).parent().next('div').removeClass('hide').html(str);
+                    $('#' + res.browse_button).parent().find('p').removeClass('hide').html(str);
                 } catch (err) {
                     layer.msg(err,{icon:2,time:2000});
                 }
