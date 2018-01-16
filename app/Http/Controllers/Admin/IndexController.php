@@ -25,8 +25,6 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return "<img src=".asset('storage/app/avatar/1516091000WX20180116-092358.png').">";
-//        debug(Storage::get('avatar/1516091000WX20180116-092358.png'));
         return view('admin.index.index');
     }
 
