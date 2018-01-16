@@ -64,7 +64,7 @@ class AdminRepository extends BaseRepository
         ];
     }
 
-    public function update(array $attributes, $id)
+    public function updateUserInfoAndRole(array $attributes, $id)
     {
         $user = Admin::find($id);
         foreach ($user->roles as $role) {

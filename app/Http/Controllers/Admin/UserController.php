@@ -79,7 +79,7 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
-        $res = $this->admin->update($request->input(),$id);
+        $res = $this->admin->updateUserInfoAndRole($request->input(),$id);
         if ($res) {
             return ['status' => 1, 'msg' => '修改成功'];
         } else {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\Eloquent\AdminRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class IndexController extends Controller
 {
@@ -23,6 +25,8 @@ class IndexController extends Controller
      */
     public function index()
     {
+        return "<img src=".asset('storage/app/avatar/1516091000WX20180116-092358.png').">";
+//        debug(Storage::get('avatar/1516091000WX20180116-092358.png'));
         return view('admin.index.index');
     }
 

@@ -48,6 +48,7 @@
 <script>
     seajs.use('module_js/userInfo/edit', function (edit) {
         edit.init();
+        window.edit_user_info = edit.edit_user_info;
     })
 </script>
 
