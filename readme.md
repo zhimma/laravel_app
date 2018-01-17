@@ -11,6 +11,8 @@
 4. php artisan migrate
 5. php artisan db:seed
 
+![review](http://mafuntoo-blog.oss-cn-qingdao.aliyuncs.com/laravel/WX20180117-153948.png)
+
 
 
 访问domain.com/admin  mma=>123456
