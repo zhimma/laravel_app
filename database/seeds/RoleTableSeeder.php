@@ -11,7 +11,7 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Roles')->insert([
+        DB::table('roles')->insert([
                                        ['name' => 'admin', 'display_name' => '超级管理员', 'description' => 'super user', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
                                        ['name' => 'user', 'display_name' => '普通管理员', 'description' => 'user', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()]
                                    ]);
