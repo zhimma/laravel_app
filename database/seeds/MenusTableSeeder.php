@@ -40,6 +40,15 @@ class MenusTableSeeder extends Seeder
         $menu->save();
 
         $menu = new \App\Models\Menu();
+        $menu->parent_id = 0;
+        $menu->name = '博客';
+        $menu->url = '';
+        $menu->icon = '';
+        $menu->sort = 4;
+        $menu->is_show = 1;
+        $menu->save();
+
+        $menu = new \App\Models\Menu();
         $menuData = $menu::where('name','用户管理')->first();
         $menu->parent_id = $menuData->id;
         $menu->name = '用户列表';
@@ -71,5 +80,40 @@ class MenusTableSeeder extends Seeder
         $menu->sort = 0;
         $menu->is_show = 1;
         $menu->save();
+
+        $menu = new \App\Models\Menu();
+        $menuData = $menu::where('name','博客')->first();
+        $menu->parent_id = $menuData->id;
+        $menu->name = '导航管理';
+        $menu->url = 'admin/navigate';
+        $menu->slug = 'admin.navigate';
+        $menu->icon = '';
+        $menu->sort = 0;
+        $menu->is_show = 1;
+        $menu->save();
+
+        $menu = new \App\Models\Menu();
+        $menuData = $menu::where('name','博客')->first();
+        $menu->parent_id = $menuData->id;
+        $menu->name = '文章分类';
+        $menu->url = 'admin/article/category';
+        $menu->slug = 'admin.article.category';
+        $menu->icon = '';
+        $menu->sort = 0;
+        $menu->is_show = 1;
+        $menu->save();
+
+        $menu = new \App\Models\Menu();
+        $menuData = $menu::where('name','博客')->first();
+        $menu->parent_id = $menuData->id;
+        $menu->name = '文章列表';
+        $menu->url = 'admin/article';
+        $menu->slug = 'admin.article';
+        $menu->icon = '';
+        $menu->sort = 0;
+        $menu->is_show = 1;
+        $menu->save();
+
+
     }
 }
