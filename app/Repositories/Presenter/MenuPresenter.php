@@ -96,13 +96,13 @@ class MenuPresenter
     public function getActionButtons($menu, $bool = true)
     {
         $buttons = '<div class="pull-right action-buttons">';
-        if (auth()->user()->can('admin/menu/create') && $bool) {
+        if (auth()->user()->can('admin.menu.create') && $bool) {
             $buttons .= '<a href="javascript:;"  data-href="' . url("admin/menu") . '" data-pid="' . $menu['id'] . '" class="btn-xs createMenu" data-toggle="tooltip" data-original-title="添加"  data-placement="top"> <i class="fa fa-plus"></i></a>';
         }
-        if (auth()->user()->can('admin/menu/edit')) {
+        if (auth()->user()->can('admin.menu.edit')) {
             $buttons .= '<a href="javascript:;" data-href="' . url("admin/menu/{$menu['id']}/edit") . '" class="btn-xs editMenu" data-toggle="tooltip" data-original-title="修改"  data-placement="top"><i class="fa fa-pencil"></i></a>';
         }
-        if (auth()->user()->can('admin/menu/destroy')) {
+        if (auth()->user()->can('admin.menu.destroy')) {
             if ($menu['parent_id'] == 0) {
                 if (empty($menu['_child'])) {
                     $buttons .= '<a href="javascript:;" class="btn-xs destroyMenu" data-id="' . $menu['id'] . '" data-original-title="删除" data-toggle="tooltip" data-placement="top"> <i class="fa fa-trash"></i>

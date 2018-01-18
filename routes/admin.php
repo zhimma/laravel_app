@@ -35,6 +35,9 @@ Route::prefix('admin')->group(function(){
         Route::get('role/ajaxGetList',['uses' => 'RoleController@ajaxGetList'])->name('role.ajaxGetList');
         Route::PUT('role/updateAuth/{id}',['uses' => 'RoleController@updateAuth'])->name('role.updateAuth');
         Route::resource('role','RoleController');
+        Route::resource('navigate','NavigateController');
+        Route::resource('article/category','ArticleCategoryController');
+        Route::resource('article','ArticleController');
     });
 
 });
