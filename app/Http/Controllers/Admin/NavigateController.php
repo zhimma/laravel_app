@@ -99,6 +99,7 @@ class NavigateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->navigate->delete($id);
+        return ['status' => 1, 'msg' => '导航删除成功'];
     }
 }
