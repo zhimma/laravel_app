@@ -74,7 +74,8 @@ class NavigateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->navigate->find($id);
+        return view('admin.navigate.edit')->with('data',$data);
     }
 
     /**
@@ -85,9 +86,14 @@ class NavigateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NavigateRequest $request, $id)
     {
-        //
+        $res = $this->navigate->update($request->input(), $id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
     /**

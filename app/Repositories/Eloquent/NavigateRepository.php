@@ -54,6 +54,7 @@ class NavigateRepository extends BaseRepository
                 $btn['edit_btn']['params'] = ['id' => $value['id']];
                 $btn['delete_btn']['params'] = ['id' => $value['id']];
                 $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
+                $value['status'] = $value['status'] == 1 ? '启用' : '禁用';
             }
         }
 

@@ -69,7 +69,7 @@
             'mark': 'js_mark_class',
             'size': ['50%', '60%'],
             'jump': 0,
-            'callback': 'edit_role'
+            'callback': 'edit_navigate'
         };
 
         var delete_btn = {
