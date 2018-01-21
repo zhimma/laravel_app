@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+    protected $article;
+    public function __construct(ArticleRepository $article)
+    {
+        $this->article = $article;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,14 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.article.index');
+    }
+
+    public function ajaxGetList(Request $request)
+    {
+        $return = $this->article->ajaxGetList($request);
+
+        return response()->json($return);
     }
 
     /**
@@ -24,7 +38,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article.create');
     }
 
     /**

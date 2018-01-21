@@ -18,7 +18,8 @@
             layer:"vendors/layer/layer.js",
             dataTables:"vendors/datatables.net/js/jquery.dataTables.js",
             dataTables_bs3:"vendors/datatables.net-bootstrap3/js/dataTables.bootstrap.js",
-            switchery:"vendors/switchery/dist/switchery.min.js"
+            switchery:"vendors/switchery/dist/switchery.min.js",
+            wangEditor:"vendors/wangEditor-3.0.15/release/wangEditor.min.js",
 
 
         },
