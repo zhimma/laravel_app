@@ -25,7 +25,7 @@
                             'slug' => 'admin.article.create',
                             'params'=>[],
                             'mark'=>'js_mark_class',
-                            'size' => ['50%','60%'],
+                            'size' => ['70%','80%'],
                             'jump' => false,
                             'callback'=>'create_article'
                             ]) !!}

@@ -57,7 +57,6 @@ class ArticleRepository extends BaseRepository
                 $value['status'] = $value['status'] == 1 ? '启用' : '禁用';
             }
         }
-        debug($request->input());
 
         return [
             //第几页

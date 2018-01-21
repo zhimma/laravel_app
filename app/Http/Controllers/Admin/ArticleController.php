@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ArticleRequest;
 use App\Repositories\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -31,6 +33,24 @@ class ArticleController extends Controller
         return response()->json($return);
     }
 
+    public function upload(Request $request)
+    {
+        $folder = 'uploads/article/'.date('Ymd');
+        if(!Storage::disk('public')->exists($folder)){
+            Storage::makeDirectory($folder);
+        }
+        $extension = $request->file('article')->getClientOriginalExtension();
+        $allowExtension = ["png", "jpg", "gif"];
+        if (!($extension && in_array($extension, $allowExtension))) {
+            return response()->json(['status' => 0, 'msg' => '文件类型不允许']);
+        }
+        if ($request->hasFile('article') && $request->file('article')->isValid()) {
+            $path = $request->file('article')->store($folder.'/article');
+
+            return response()->json(['status' => 1, 'path' => asset('storage/' .$path)]);
+        }
+            return response()->json(['status' => 0, 'msg' => '上传错误']);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -42,14 +62,23 @@ class ArticleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 保存
+     * @param ArticleRequest $request
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
+     * @throws \App\Repositories\Exceptions\RepositoryException
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月21日19:16:33
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $res = $this->article->create($request->input());
+        if ($res) {
+            return ['status' => 1, 'msg' => '新增成功'];
+        } else {
+            return ['status' => 0, 'msg' => '新增失败'];
+        }
     }
 
     /**

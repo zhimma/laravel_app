@@ -22,7 +22,7 @@ define(function (require, exports, module) {
                         });
                     }else{
                         var str = '<div class="alert alert-danger"><ul>';
-                        $.each(data.data.msg,{time:2000},function(i,v){
+                        $.each(data.data.msg,function(i,v){
                             str += '<li>'+v+'</li>'
                         });
                         str += '</ul></div>';

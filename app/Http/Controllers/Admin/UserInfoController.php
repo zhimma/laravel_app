@@ -8,6 +8,8 @@ use App\Repositories\Eloquent\AdminRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Storage;
 
 class UserInfoController extends Controller
 {
@@ -90,21 +92,34 @@ class UserInfoController extends Controller
     public function upload(Request $request)
     {
 
+        $folder = 'uploads/avatar/'.date('Ymd');
+        if(!Storage::disk('public')->exists($folder)){
+            Storage::makeDirectory($folder);
+        }
+        $extension = $request->file('avatar')->getClientOriginalExtension();
+        $allowExtension = ["png", "jpg", "gif"];
+        if (!($extension && in_array($extension, $allowExtension))) {
+            return response()->json(['status' => 0, 'msg' => '文件类型不允许']);
+        }
         if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $path = $request->file('avatar')->store($folder.'/avatars');
+            return response()->json(['status' => 1, 'path' => asset('storage/' .$path)]);
+        }
+        return response()->json(['status' => 0, 'msg' => '上传错误']);
+
+        /*if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $avatar = $request->file('avatar');
             $extension = $avatar->getClientOriginalExtension();
             $allowExtension = ["png", "jpg", "gif"];
             if (!($extension && in_array($extension, $allowExtension))) {
                 return response()->json(['status' => 0, 'msg' => '文件类型不允许']);
             }
-            $destinationPath = 'uploads/images/avatar/';
             $fileName = str_random(10) . "_" . Carbon::now()->timestamp . "_" . $request->name;
             $avatar->move($destinationPath, $fileName);
 
             return response()->json(['status' => 1, 'path' => asset($destinationPath . $fileName)]);
-        }
+        }*/
 
-        return response()->json(['status' => 0, 'msg' => '上传错误']);
 
     }
 

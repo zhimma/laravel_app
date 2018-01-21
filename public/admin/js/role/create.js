@@ -16,7 +16,7 @@ define(function (require, exports, module) {
             sendAjax(params, function (data) {
                 if(data.status == 1){
                     if(data.data.status == 1){
-                        layer.msg(data.data.msg,{time:2000},function(){
+                        layer.msg(data.data.msg,function(){
                             // layer.closeAll();
                             window.location.reload();
                         });

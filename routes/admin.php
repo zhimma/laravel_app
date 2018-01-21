@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function(){
         Route::get('navigate/ajaxGetList',['uses' => 'NavigateController@ajaxGetList'])->name('navigate.ajaxGetList');
         Route::resource('navigate','NavigateController');
         Route::resource('article/category','ArticleCategoryController');
+        Route::post('article/upload',['uses'=>'ArticleController@upload'])->name('article.upload');
         Route::get('article/ajaxGetList',['uses' => 'ArticleController@ajaxGetList'])->name('article.ajaxGetList');
         Route::resource('article','ArticleController');
     });
