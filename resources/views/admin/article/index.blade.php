@@ -67,7 +67,7 @@
             'slug': 'admin.article.edit',
             'params': [],
             'mark': 'js_mark_class',
-            'size': ['50%', '60%'],
+            'size': ['70%', '80%'],
             'jump': 0,
             'callback': 'edit_article'
         };

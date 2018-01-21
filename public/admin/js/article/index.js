@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
     require('dataTables');
-    require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
+    // require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     module.exports = {
         init:function(){
             var that = this;
@@ -78,12 +78,12 @@ define(function (require, exports, module) {
                     },
                     "drawCallback": function () {
                         window.layWindow();
-                        that.delete_navigate()
+                        that.delete_article()
                     }
                 });
             });
         },
-        delete_navigate: function () {
+        delete_article: function () {
             $("button[js_mark_class='js_mark_class']").on('click', function () {
                 var that = this;
                 layer.confirm('确定删除该文章？', {

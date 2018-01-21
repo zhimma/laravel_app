@@ -81,26 +81,25 @@ class ArticleController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * 编辑
+     * @param $id
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月21日19:45:37
      */
     public function edit($id)
     {
-        //
+        $data = $this->article->find($id);
+        return view('admin.article.edit',compact('data'));
     }
 
     /**
@@ -110,19 +109,28 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        //
+        $res = $this->article->update($request->input(), $id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除
+     * @param $id
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return array
+     *
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月21日21:27:56
      */
     public function destroy($id)
     {
-        //
+        $this->article->delete($id);
+        return ['status' => 1, 'msg' => '文章删除成功'];
     }
 }

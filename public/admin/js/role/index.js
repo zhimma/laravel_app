@@ -1,6 +1,6 @@
 define(function (require, exports, module) {
     require('dataTables');
-    require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
+    // require('http://cdn.datatables.net/plug-ins/28e7751dbec/integration/bootstrap/3/dataTables.bootstrap.js');
     module.exports = {
         init: function (btns) {
             var that = this;

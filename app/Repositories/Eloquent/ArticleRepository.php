@@ -55,6 +55,7 @@ class ArticleRepository extends BaseRepository
                 $btn['delete_btn']['params'] = ['id' => $value['id']];
                 $value['btn'] = BA($btn['edit_btn']) . BA($btn['delete_btn']);
                 $value['status'] = $value['status'] == 1 ? '启用' : '禁用';
+                $value['content'] = strip_tags(htmlspecialchars_decode(str_limit($value['content'],50)));
             }
         }
 
