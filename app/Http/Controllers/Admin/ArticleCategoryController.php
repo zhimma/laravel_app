@@ -14,7 +14,7 @@ class ArticleCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.articleCategory.index');
     }
 
     /**

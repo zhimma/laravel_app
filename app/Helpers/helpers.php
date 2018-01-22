@@ -40,6 +40,7 @@ function BA(array $array = [])
     if (!$user->can($slug) && !in_array($slug,['admin.userInfo.edit'])) {
         return '';
     }
+
     $jsonData = htmlentities(json_encode($array), ENT_QUOTES, 'UTF-8');
 //    print_r($array);
     if ($array['type'] == 'a') {

@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>菜单列表</h3>data
+                <h3>文章分类管理</h3>data
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,19 +17,19 @@
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>菜单列表
+                        <h2>分类列表
                         </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content bs-example-popovers">
                         <div class="dd" id="nestable">
-                            @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
-                            {!! $menuPresenter->getMenuList() !!}
+                            @inject('articleCategoryPresenter','App\Repositories\Presenter\articleCategoryPresenter')
+                            {!! $articleCategoryPresenter->getarticleCategoryList() !!}
                         </div>
                     </div>
                 </div>
             </div>
-            @permission('admin.menu.create')
+            @permission('admin.articleCategory.create')
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
@@ -82,8 +82,8 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <select class="select2_single form-control" name="parent_id" tabindex="-1">
-                                        @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
-                                        {!! $menuPresenter->getParentMenu($parentMenus) !!}
+                                       {{-- @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
+                                        {!! $menuPresenter->getParentMenu($parentMenus) !!}--}}
                                     </select>
                                 </div>
                             </div>
@@ -118,8 +118,8 @@
 @endsection
 @section('js')
     <script>
-        seajs.use(['module_js/menu/index'], function (menu) {
-            menu.init();
+        seajs.use(['module_js/articleCategory/index'], function (articleCategory) {
+            articleCategory.init();
         });
     </script>
 @endsection
