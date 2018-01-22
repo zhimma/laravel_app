@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Repositories\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
+
+    protected $article;
+
+    public function __construct(ArticleRepository $article)
+    {
+        $this->article = $article;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('home.index.index');
+        $articles = $this->article->all();
+        return view('home.index.index',compact('articles'));
     }
 
     /**

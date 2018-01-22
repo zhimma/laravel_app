@@ -69,4 +69,10 @@ class NavigateRepository extends BaseRepository
         ];
 
     }
+
+    public function getNavigateForHome()
+    {
+        $navigate = $this->makeModel()->orderBy('sort','asc')->where('status',1)->get()->toArray();
+        return $navigate;
+    }
 }
