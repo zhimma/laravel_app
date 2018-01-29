@@ -13,7 +13,7 @@ class ArticleCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,23 @@ class ArticleCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $return = [
+            'name' => 'required'
         ];
+        if(request('id')){
+            $return['name'] = 'required|unique:article_categorys,name';
+        }
+        return $return;
+    }
+
+    public function messages()
+    {
+        $return = [
+            'name.required' => '分类名称不能为空'
+        ];
+        if (request('id')) {
+            $message['name.unique'] = '分类名称不能重复';
+        }
+        return $return;
     }
 }

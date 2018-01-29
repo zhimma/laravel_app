@@ -33,7 +33,6 @@ define(function (require, exports, module) {
                         index = layer.load(2, {shade: false}); //0代表加载的风格，支持0-2
                     },
                     success:function(res){
-                        console.log(res.data);
                         layer.close(index);
                         if(res.status == 1){
                             _self.appendEditData(res.data,res.url);

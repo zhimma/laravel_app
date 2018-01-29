@@ -24,88 +24,69 @@
                     <div class="x_content bs-example-popovers">
                         <div class="dd" id="nestable">
                             @inject('articleCategoryPresenter','App\Repositories\Presenter\articleCategoryPresenter')
-                            {!! $articleCategoryPresenter->getarticleCategoryList() !!}
+                            {!! $articleCategoryPresenter->getArticleCategoryList() !!}
                         </div>
                     </div>
                 </div>
             </div>
             @permission('admin.articleCategory.create')
+
             <div class="col-md-6">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>菜单编辑
+                        <h2>分类编辑
                         </h2>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 error-box">
+                    </div>
                     <div class="x_content">
-                        <br/>
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <form class="form-horizontal form-label-left j_create_menu" @if(old('id')) action="{{ url('admin/menu/'.old('id')) }}" @else action="{{ url('admin/menu') }}" @endif  method="POST">
+                        <form class="form-horizontal form-label-left j_create_category" action="{{ route('articleCategory.store') }}" method="POST">
                             {{ csrf_field() }}
-                            @if(old('id'))
+                            {{--@if(old('id'))
                                 <div class="hidden_area">
                                     <input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">
-                                    <input type="hidden"  name="id" value="{{ old('id') }}">
+                                    <input type="hidden" name="id" value="{{ old('id') }}">
                                 </div>
-                            @endif
+                            @endif--}}
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单名称</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">分类名称</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <input type="text" name="name" value="{{ old('name') }}" class="form-control"
-                                           placeholder="菜单名称">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单链接</label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="url" value="{{ old('url') }}" class="form-control"
-                                           placeholder="菜单链接">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单权限标识</label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="slug" value="{{ old('slug') }}" class="form-control"
-                                           placeholder="菜单权限标识">
+                                           placeholder="分类名称">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">父级菜单</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <select class="select2_single form-control" name="parent_id" tabindex="-1">
-                                       {{-- @inject('menuPresenter','App\Repositories\Presenter\MenuPresenter')
-                                        {!! $menuPresenter->getParentMenu($parentMenus) !!}--}}
+                                        @inject('ArticleCategoryPresenter','App\Repositories\Presenter\ArticleCategoryPresenter')
+                                        {!! $ArticleCategoryPresenter->getParentCategory() !!}
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单图标</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">分类描述</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="text" name="icon" value="{{ old('icon') }}" class="form-control"
-                                           placeholder="菜单图标">
+                                    <input type="text" name="description" value="{{ old('url') }}" class="form-control"
+                                           placeholder="分类描述">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">菜单排序</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">状态</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <input type="number" name="sort" value="{{ old('sort') }}" class="form-control"
-                                           placeholder="菜单排序">
+                                    <select name="status" class="form-control">
+                                        <option value="1">显示</option>
+                                        <option value="0" {{--@if($data['status'] == 0) selected @endif--}}>隐藏</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                                    <button type="cancel" class="btn btn-default">取消</button>
-                                    <button type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-default j_cancel_class">取消</button>
+                                    <button type="button" class="btn btn-success j_submit_class">保存</button>
                                 </div>
                             </div>
                         </form>
