@@ -10,5 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'Home\IndexController@index');
+Route::namespace('Home')->group(function (){
+    Route::get('/', 'IndexController@index')->name('home.index');
+    Route::get('navigate/{id}', 'NavigateController@index')->name('home.navigate');
+    Route::get('article/{id}', 'ArticleController@index')->name('home.article');
+});

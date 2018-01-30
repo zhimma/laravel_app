@@ -2,18 +2,15 @@
     <div class="col-md-3">
         <div class="side animate-box">
             <div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
-                <h2><span>关于我</span></h2>
+                <h2><span>about me</span></h2>
             </div>
             <div class="fh5co-staff">
-                <img src="images/user-2.jpg" alt="Free HTML5 Templates by FreeHTML5.co">
-                <h3>Jean Smith</h3>
-                <strong class="role">CEO, Founder</strong>
-                <p>Quos quia provident conse culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita.</p>
+                <img src="{{ asset("home/images/user-2.jpg") }}" alt="Free HTML5 Templates by FreeHTML5.co">
+                <h3>马雄飞</h3>
+                <strong class="role">PHP development engineer </strong>
+                {{--<p>Quos quia provident conse culpa facere ratione maxime commodi voluptates id repellat velit eaque aspernatur expedita.</p>--}}
                 <ul class="fh5co-social-icons">
-                    <li><a href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                    <li><a href="#"><i class="icon-github"></i></a></li>
+                    <li><a href="https://github.com/zhimma"><i class="icon-github"></i></a></li>
                 </ul>
             </div>
         </div>
