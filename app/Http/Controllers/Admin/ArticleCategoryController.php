@@ -71,35 +71,41 @@ class ArticleCategoryController extends Controller
     public function edit($id)
     {
         $category = $this->articleCategory->find($id);
+        $category->url = route('articleCategory.update',['id' => $id]);
         if (!empty($category)) {
-            return response()->json(['status' => 1, 'data' => json_encode($category)]);
+            return response()->json(['status' => 1, 'data' =>$category]);
         } else {
             return response()->json(['status' => 0 ,'msg' => '获取数据失败']);
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(ArticleCategoryRequest $request, $id)
     {
-        //
+        $res = $this->articleCategory->update($request->input(), $id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '修改成功'];
+        } else {
+            return ['status' => 0, 'msg' => '修改失败'];
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除分类
+     * @param $id
      *
-     * @param  int $id
+     * @return array
      *
-     * @return \Illuminate\Http\Response
+     * @author 马雄飞 <xiongfei.ma@pactera.com>
+     * @date 2018年01月30日18:25:12
      */
     public function destroy($id)
     {
-        //
+        $res = $this->articleCategory->delete($id);
+        if ($res) {
+            return ['status' => 1, 'msg' => '删除成功'];
+        } else {
+            return ['status' => 0, 'msg' => '删除失败'];
+        }
     }
 }

@@ -75,25 +75,37 @@ class ArticleCategoryPresenter
     public function getActionButtons($menu)
     {
         $buttons = '<div class="pull-right action-buttons">';
-        $buttons .= BA([
-                           'title'  => '<i class="fa fa-pencil"></i>',
-                           'route'  => 'articleCategory.edit',
-                           'class'  => 'btn btn-primary btn-xs j_edit_class',
-                           'slug'   => 'admin.articleCategory.edit',
-                           'params' => ['id' => $menu['id']],
-                           'mark'   => 'js_mark_class',
-                           'size'   => ['70%', '80%'],
-                           'jump'   => 0,
-                           'type'   => 'button'
-                       ]);
         if ($menu['parent_id'] == 0) {
+            $buttons .= BA([
+                                'title'  => '<i class="fa fa-plus"></i>',
+                                'route'  => 'articleCategory.create',
+                                'class'  => 'btn btn-default btn-xs j_create_class',
+                                'slug'   => 'admin.articleCategory.create',
+                                'params' => '',
+                                'data' => ['parent_id'=>$menu['id']],
+                                'mark'   => 'js_mark_class',
+                                'size'   => ['70%', '80%'],
+                                'jump'   => 0,
+                                'type'   => 'button'
+                            ]);
+            $buttons .= BA([
+                               'title'  => '<i class="fa fa-pencil"></i>',
+                               'route'  => 'articleCategory.edit',
+                               'class'  => 'btn btn-primary btn-xs j_edit_class',
+                               'slug'   => 'admin.articleCategory.edit',
+                               'params' => ['id' => $menu['id']],
+                               'mark'   => 'js_mark_class',
+                               'size'   => ['70%', '80%'],
+                               'jump'   => 0,
+                               'type'   => 'button'
+                           ]);
             if (empty($menu['_child'])) {
                 $buttons .= BA([
                                    'title'  => '<i class="fa fa-trash"></i>',
                                    'route'  => 'articleCategory.destroy',
                                    'slug'   => 'admin.articleCategory.destroy',
                                    'params' => ['id' => $menu['id']],
-                                   'class'  => 'btn btn-danger btn-xs j_edit_class',
+                                   'class'  => 'btn btn-danger btn-xs j_destroy_class',
                                    'mark'   => 'js_mark_class',
                                    'size'   => ['70%', '80%'],
                                    'jump'   => 0,
@@ -101,7 +113,17 @@ class ArticleCategoryPresenter
                                ]);
             }
         } else {
-
+            $buttons .= BA([
+                               'title'  => '<i class="fa fa-pencil"></i>',
+                               'route'  => 'articleCategory.edit',
+                               'class'  => 'btn btn-primary btn-xs j_edit_class',
+                               'slug'   => 'admin.articleCategory.edit',
+                               'params' => ['id' => $menu['id']],
+                               'mark'   => 'js_mark_class',
+                               'size'   => ['70%', '80%'],
+                               'jump'   => 0,
+                               'type'   => 'button'
+                           ]);
             $buttons .= BA([
                                'title'  => '<i class="fa fa-trash"></i>',
                                'route'  => 'articleCategory.destroy',

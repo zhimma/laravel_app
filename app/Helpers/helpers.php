@@ -34,6 +34,7 @@ function list_to_tree_key($list, $pk = 'id', $pid = 'pid', $child = '_child', $r
 function BA(array $array = [])
 {
     $array['type'] = isset($array['type']) ? $array['type'] : 'a';
+    $array['data'] = isset($array['data']) && !empty($array['data']) ?$array['data']: '';
     $slug = $array['slug'];
     $route = $array['route'];
     $user = Auth::user();

@@ -24,7 +24,7 @@ class ArticleCategoryRequest extends FormRequest
     public function rules()
     {
         $return = [
-            'name' => 'required'
+            'name' => 'required|unique:article_categorys'
         ];
         if(request('id')){
             $return['name'] = 'required|unique:article_categorys,name';
@@ -35,7 +35,8 @@ class ArticleCategoryRequest extends FormRequest
     public function messages()
     {
         $return = [
-            'name.required' => '分类名称不能为空'
+            'name.required' => '分类名称不能为空',
+            'name.unique' => '分类名称不能重复',
         ];
         if (request('id')) {
             $message['name.unique'] = '分类名称不能重复';

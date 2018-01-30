@@ -41,15 +41,8 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 error-box">
                     </div>
                     <div class="x_content">
-                        <form class="form-horizontal form-label-left j_create_category" action="{{ route('articleCategory.store') }}" method="POST">
+                        <form class="form-horizontal form-label-left j_create_category" action="{{ route('articleCategory.store') }}" data-url="{{ route('articleCategory.store') }}" method="POST">
                             {{ csrf_field() }}
-                            {{--@if(old('id'))
-                                <div class="hidden_area">
-                                    <input type="hidden" class="j_hidden_method_field" name="_method" value="PUT">
-                                    <input type="hidden" name="id" value="{{ old('id') }}">
-                                </div>
-                            @endif--}}
-
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">分类名称</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
