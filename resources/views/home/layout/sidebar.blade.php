@@ -51,15 +51,12 @@
                 <h2><span>Category</span></h2>
             </div>
             <ul class="category">
-                <li><a href="#"><i class="icon-check"></i>Lifestyle</a></li>
-                <li><a href="#"><i class="icon-check"></i>Web Development</a></li>
-                <li><a href="#"><i class="icon-check"></i>Web Design</a></li>
-                <li><a href="#"><i class="icon-check"></i>Nature</a></li>
-                <li><a href="#"><i class="icon-check"></i>Life</a></li>
-                <li><a href="#"><i class="icon-check"></i>Entertainment</a></li>
+                @foreach($categories as $category)
+                    <li><a href="{{ route('home.category',['id'=>$category['id']]) }}"><i class="icon-check"></i>{{ $category['name'] }}</a></li>
+                @endforeach
             </ul>
         </div>
-        <div class="side animate-box">
+        {{--<div class="side animate-box">
             <div class="col-md-12 col-md-offset-0 text-center fh5co-heading fh5co-heading-sidebar">
                 <h2><span>Intagram</span></h2>
             </div>
@@ -70,6 +67,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
     </div>
 </aside>

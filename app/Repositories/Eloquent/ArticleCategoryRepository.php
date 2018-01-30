@@ -19,4 +19,8 @@ class ArticleCategoryRepository extends BaseRepository
     {
         return ArticleCategory::class;
     }
+    public function getCategory()
+    {
+        return ArticleCategory::where('parent_id',0)->orderBy('created_at','desc')->get()->toArray();
+    }
 }
