@@ -166,4 +166,9 @@ abstract class BaseRepository implements RepositoryInterface
         return $result;
     }
 
+    public function paginate(array $where = [],$size = 8)
+    {
+        return $this->model->where($where)->paginate($size);
+    }
+
 }

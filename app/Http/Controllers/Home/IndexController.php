@@ -23,7 +23,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $articles = $this->article->all();
+        $articles = $this->article->paginate();
         return view('home.index.index',compact('articles'));
     }
 

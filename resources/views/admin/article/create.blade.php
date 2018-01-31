@@ -13,7 +13,7 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <select name="category_id" class="form-control">
                     <option value="1">显示</option>
-                    <option value="0">隐藏</option>
+                    <option value="0">隐藏</option>i
                 </select>
             </div>
         </div>
