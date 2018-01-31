@@ -96,8 +96,8 @@ class MenusTableSeeder extends Seeder
         $menuData = $menu::where('name','博客')->first();
         $menu->parent_id = $menuData->id;
         $menu->name = '文章分类';
-        $menu->url = 'admin/article/category';
-        $menu->slug = 'admin.article.category';
+        $menu->url = 'admin/articleCategory';
+        $menu->slug = 'admin.articleCategory';
         $menu->icon = '';
         $menu->sort = 0;
         $menu->is_show = 1;

@@ -25,7 +25,7 @@ class AdminsTableSeeder extends Seeder
             });
         $faker = \Faker\Factory::create();
 
-        $user = factory('App\Models\Admin', 300)
+        $user = factory('App\Models\Admin')
             ->create([
                          'password' => bcrypt('123456'),
                      ])->each(function ($u) use ($userRole) {
