@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DatabaseTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminsTableSeeder::class);
         $this->call(MenusTableSeeder::class);
         $this->call(NavigateTableSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(ArticleSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(ArticleTableSeeder::class);
     }
 }
