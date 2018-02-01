@@ -1,7 +1,13 @@
 define(function (require, exports, module) {
     require('wangEditor');
+    // require('ueditor');
+    // require('ueditor_config');
+    // require('ueditor_lang');
     module.exports = {
         init:function(url){
+            this.wangEditorInit(url);
+        },
+        wangEditorInit:function(){
             var E = window.wangEditor;
             editor = new E('#editor');
             // 或者 var editor = new E( document.getElementById('editor') )
@@ -17,8 +23,8 @@ define(function (require, exports, module) {
                 success: function (xhr, editor, result) {
                 },
                 fail: function (xhr, editor, result) {
-                   layer.msg('上传出错');
-                   return false;
+                    layer.msg('上传出错');
+                    return false;
                 },
                 error: function (xhr, editor) {
                     layer.msg('上传出错');

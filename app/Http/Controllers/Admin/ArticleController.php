@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ArticleRequest;
+use App\Repositories\Eloquent\ArticleCategoryRepository;
 use App\Repositories\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,9 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
     protected $article;
-    public function __construct(ArticleRepository $article)
+    protected $category;
+    public function __construct(ArticleRepository $article,ArticleCategoryRepository $category)
     {
         $this->article = $article;
+        $this->category = $category;
     }
 
     /**
@@ -58,7 +61,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.article.create');
+        $categories = $this->category->getCategory();
+        return view('admin.article.create')->with(compact('categories'));
     }
 
     /**
@@ -84,7 +88,7 @@ class ArticleController extends Controller
 
     public function show($id)
     {
-        //
+
     }
 
     /**

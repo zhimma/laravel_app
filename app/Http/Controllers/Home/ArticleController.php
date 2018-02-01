@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Repositories\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ArticleController extends Controller
 {
+    protected $article;
+    public function __construct(ArticleRepository $article)
+    {
+        $this->article = $article;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +52,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = $this->article->find($id);
+        return view('home.article.show')->with(compact('article'));
     }
 
     /**

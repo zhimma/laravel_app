@@ -11,6 +11,6 @@ class ArticleTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Article::class,50)->create();
+        factory(\App\Models\Article::class)->create();
     }
 }

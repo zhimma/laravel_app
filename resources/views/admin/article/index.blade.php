@@ -58,8 +58,11 @@
     </div>
     <!-- /page content -->
 @endsection
+
 @section('js')
+
     <script>
+        window.UEDITOR_HOME_URL = paths.vendors+"/ueditor/";
         var edit_btn = {
             'title': '编辑',
             'class': 'btn btn-sm btn-primary',

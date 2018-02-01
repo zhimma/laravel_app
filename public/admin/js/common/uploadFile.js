@@ -2,7 +2,6 @@ define(function (require, exports, module) {
     require('vendors/plupload/v2.1.2/js/plupload.full.min.js');
     module.exports = {
         getConfig: function (config) {
-            console.log(paths.vendors);
             //默认参数
             var set = {
                 flash_swf_url: paths.vendors + '/plupload/v2.1.2/js/Moxie.swf',//swf文件，当需要使用swf方式进行上传时需要配置该参数

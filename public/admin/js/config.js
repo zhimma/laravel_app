@@ -20,7 +20,9 @@
             dataTables_bs3:"vendors/datatables.net-bootstrap3/js/dataTables.bootstrap.js",
             switchery:"vendors/switchery/dist/switchery.min.js",
             wangEditor:"vendors/wangEditor-3.0.15/release/wangEditor.min.js",
-
+            ueditor_config:"vendors/ueditor/ueditor.config.js",
+            ueditor:"vendors/ueditor/ueditor.all.min.js",
+            ueditor_lang:"vendors/ueditor/lang/zh-cn/zh-cn.js"
 
         },
         preload:[
